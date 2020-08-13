@@ -7,6 +7,9 @@ use Faker\Generator as Faker;
 
 $factory->define(Produk::class, function (Faker $faker) {
     return [
-        //
+        "kode" => $faker->unique()->bankAccountNumber,
+        "nama" => join(" ", $faker->words),
+        "deskripsi" => $faker->realText(),
+        "harga" => rand(1, 10_000) * 1000
     ];
 });

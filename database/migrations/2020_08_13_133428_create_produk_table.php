@@ -17,11 +17,16 @@ class CreateProdukTable extends Migration
             $table->increments('id');
 
             $table->unsignedInteger('penjual_id')->index();
-            $table->string('kode')->unique();
+            $table->string('kode');
             $table->string('nama');
             $table->text('deskripsi');
             $table->unsignedDouble('harga', 19, 4);
             $table->timestamps();
+
+            $table->unique([
+                'penjual_id',
+                'kode',
+            ]);
 
             $table->foreign('penjual_id')->references('id')->on('penjual');
         });

@@ -30,6 +30,7 @@ class RouteServiceProvider extends ServiceProvider
             case UserLevel::SUPER_ADMIN:
                 return route("penjual.index");
             case UserLevel::PENJUAL:
+                return route("penjual-profile.edit", auth()->user()->penjual ?? null);
             case UserLevel::PELANGGAN:
             default:
                 return route("home");

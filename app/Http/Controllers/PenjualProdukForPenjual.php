@@ -31,7 +31,6 @@ class PenjualProdukForPenjual extends Controller
 
         return $this->responseFactory->view("produk-for-penjual.index", [
             "penjual" => $penjual,
-            "produks" => $penjual->produks()->paginate()
         ]);
     }
 
