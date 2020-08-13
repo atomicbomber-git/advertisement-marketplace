@@ -11,6 +11,7 @@
     },
     "devDependencies": {
         "@fortawesome/fontawesome-free": "^5.14.0",
+        "alpinejs": "^2.5.0",
         "axios": "^0.19",
         "bulma": "^0.9.0",
         "cross-env": "^7.0",

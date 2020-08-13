@@ -26,6 +26,11 @@ class LoginController extends Controller
         return RouteServiceProvider::home();
     }
 
+    public function loggedOut()
+    {
+        return redirect()->route("login");
+    }
+
     /**
      * Create a new controller instance.
      *

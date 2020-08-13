@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factory;
 
 $factory->define(Penjual::class, function (Faker $faker) {
     return [
-        "nama" => $faker->name,
+        "nama" => $faker->company,
         "no_telepon" => $faker->phoneNumber,
         "alamat" => $faker->address,
         "terverifikasi" => rand(0, 1),

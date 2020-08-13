@@ -14,7 +14,7 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $usernameOrPassword = "administrator";
+        $usernameOrPassword = "admin";
 
         User::query()->create([
             "name" => "Admin Utama",

@@ -1,4 +1,4 @@
-<nav class="navbar"
+<nav class="navbar is-info is-spaced"
      role="navigation"
      aria-label="main navigation"
 >
@@ -7,7 +7,7 @@
             <a class="navbar-item"
                href="https://bulma.io"
             >
-                <span class="title">
+                <span class="title has-text-light">
                     {{ config("app.name") }}
                 </span>
             </a>
@@ -63,15 +63,36 @@
                 <div class="navbar-item">
                     @guest
                         <div class="buttons">
-                            <a class="button is-primary">
+                            <a href="#" class="button is-small is-primary">
                                 <strong>
-                                    Sign up
+                                    Daftar Pelanggan
                                 </strong>
                             </a>
-                            <a href="{{ route("login") }}" class="button is-light">
+                            <a href="{{ route("penjual-registrasi.create") }}" class="button is-small is-primary">
+                                <strong>
+                                    Daftar Penjual
+                                </strong>
+                            </a>
+                            <a href="{{ route("login") }}" class="button is-small is-light">
                                 @lang("app.login")
                             </a>
                         </div>
+                    @else
+                        <div class="buttons">
+                            <form action="{{ route("logout") }}"
+                                  method="POST"
+                            >
+                                @csrf
+                                <button class="button is-small is-danger">
+                                    <span class="icon is-small">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </span>
+
+                                    <span> @lang("app.logout") </span>
+                                </button>
+                            </form>
+                        </div
+                        >
                     @endguest
                 </div>
             </div>
