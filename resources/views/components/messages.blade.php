@@ -6,7 +6,7 @@
             x-if="visible"
     >
         <div
-                class="my-3 notification is-{{ $message['state'] ?? \App\Constants\MessageState::STATE_INFO }}"
+                class="my-3 notification is-{{ $message['state'] ?? \App\Constants\MessageState::STATE_INFO }} is-light"
         >
             <button class="delete"
                     x-on:click="visible = false"

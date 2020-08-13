@@ -9,7 +9,9 @@ use App\Penjual;
 use App\User;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class PenjualRegistrationController extends Controller
@@ -37,7 +39,7 @@ class PenjualRegistrationController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -50,25 +52,32 @@ class PenjualRegistrationController extends Controller
             "password" => ["required", "string", "confirmed"],
         ]);
 
-        DB::transaction(function () use ($data) {
-            $user = User::query()->create([
-                "name" => $data["name"],
-                "username" => $data["username"],
-                "password" => $data["password"],
-                "level" => UserLevel::SELLER,
-            ]);
+        DB::beginTransaction();
 
-            Penjual::query()->create([
-                "user_id" => $user->id,
-                "nama" => $data["seller_name"],
-                "no_telepon" => $data["no_telepon"],
-                "alamat" => $data["alamat"],
-            ]);
-        });
+        $user = User::query()->create([
+            "name" => $data["name"],
+            "username" => $data["username"],
+            "password" => Hash::make($data["password"]),
+            "level" => UserLevel::SELLER,
+        ]);
+
+        $penjual = Penjual::query()->create([
+            "user_id" => $user->id,
+            "nama" => $data["seller_name"],
+            "no_telepon" => $data["no_telepon"],
+            "alamat" => $data["alamat"],
+        ]);
+
+        DB::commit();
 
         SessionHelper::flashMessage(
             __("messages.create.success"),
             MessageState::STATE_SUCCESS,
         );
+
+        Auth::login($user);
+
+        return $this->responseFactory
+            ->redirectToRoute("penjual-profile.edit", $penjual);
     }
 }

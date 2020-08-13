@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PenjualController;
+use App\Http\Controllers\PenjualProfileController;
 use App\Http\Controllers\PenjualRegistrationController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,5 +28,11 @@ Route::get('/', function () {
     return redirect()->route("login");
 });
 
-Route::resource("penjual", class_basename(PenjualController::class));
-Route::resource("penjual-registrasi", class_basename(PenjualRegistrationController::class))->only(["create", "store"]);
+Route::resource("penjual", class_basename(PenjualController::class))
+    ->only(["index"]);
+
+Route::resource("penjual-registrasi", class_basename(PenjualRegistrationController::class))
+    ->only(["create", "store"]);
+
+Route::resource("penjual-profile", class_basename(PenjualProfileController::class))->only(["edit", "update"])
+    ->parameter("penjual-profile", "penjual");
