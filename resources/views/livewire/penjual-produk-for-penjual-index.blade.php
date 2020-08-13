@@ -32,7 +32,20 @@
                     <td> {{ $produk->deskripsi }} </td>
                     <td class="has-text-right"> {{ Facades\App\Support\Formatter::currency($produk->harga) }} </td>
                     <td class="has-text-centered">
-                        <button class="button is-danger is-small" type="button">
+                        <button
+                            x-data="{}"
+                            x-on:click="
+                                window.confirmDialog()
+                                    .then(response => {
+                                        if (!response.value) {
+                                            return
+                                        }
+
+                                        window.livewire.emit('delete', {{ $produk->id }})
+                                    })
+                            "
+
+                            class="button is-danger is-small" type="button">
                             <span class="icon is-small">
                                 <i class="fas fa-trash  "></i>
                             </span>

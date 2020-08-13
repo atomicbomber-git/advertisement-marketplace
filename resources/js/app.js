@@ -8,6 +8,7 @@ require('./bootstrap');
 require("alpinejs")
 
 window.Vue = require('vue');
+window.Swal = require("sweetalert2")
 
 /**
  * The following block of code may be used to automatically register your
@@ -31,3 +32,16 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 const app = new Vue({
     el: '#app',
 });
+
+window.confirmDialog = (attributes) => {
+    return Swal.fire({
+        title: `Konfirmasi`,
+        titleText: `Konfirmasi Tindakan`,
+        text: `Apakah Anda yakin ingin melakukan tindakan ini?`,
+        icon: `warning`,
+        showCancelButton: true,
+        confirmButtonText: `Ya`,
+        cancelButtonText: `Tidak`,
+        ...attributes,
+    })
+}
