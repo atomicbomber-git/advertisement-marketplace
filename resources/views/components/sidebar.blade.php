@@ -12,6 +12,14 @@
                 </a>
             @endcan
 
+            @can(\App\Providers\AuthServiceProvider::MANAGE_OWN_PRODUK)
+                <a
+                        href="{{ route("penjual.produk-for-penjual.index", auth()->user()->penjual) }}"
+                        class="{{ \Illuminate\Support\Facades\Route::is("penjual.produk-for-penjual.*") ? "is-active" : "" }}" >
+                    Produk
+                </a>
+            @endcan
+
             @can(\App\Providers\AuthServiceProvider::MANAGE_ANY_PENJUAL)
                 <a
                         href="{{ route("penjual.index") }}"

@@ -29,8 +29,8 @@ class RouteServiceProvider extends ServiceProvider
         switch (auth()->user()->level) {
             case UserLevel::SUPER_ADMIN:
                 return route("penjual.index");
-            case UserLevel::SELLER:
-            case UserLevel::CUSTOMER:
+            case UserLevel::PENJUAL:
+            case UserLevel::PELANGGAN:
             default:
                 return route("home");
         }

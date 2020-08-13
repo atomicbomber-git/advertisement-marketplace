@@ -12,6 +12,7 @@ class AuthServiceProvider extends ServiceProvider
 {
     const MANAGE_ANY_PENJUAL = "manage-any-penjual";
     const MANAGE_OWN_PENJUAL_PROFILE = "manage-own-penjual-profile";
+    const MANAGE_OWN_PRODUK = "manage-own-produk";
 
     /**
      * The policy mappings for the application.
@@ -35,8 +36,13 @@ class AuthServiceProvider extends ServiceProvider
             return $user->level === UserLevel::SUPER_ADMIN;
         });
 
-        Gate::define(self::MANAGE_OWN_PENJUAL_PROFILE, function (User $user, Penjual $penjual) {
-            return $user->id === $penjual->user_id;
+        Gate::define(self::MANAGE_OWN_PENJUAL_PROFILE, function (User $user, ?Penjual $penjual = null) {
+            return $user->id === ($penjual->user_id ?? null);
+        });
+
+        Gate::define(self::MANAGE_OWN_PRODUK, function (User $user) {
+            return $user->level == UserLevel::PENJUAL
+                && $user->penjual->terverifikasi == 1;
         });
     }
 }

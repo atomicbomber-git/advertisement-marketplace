@@ -3,6 +3,23 @@
 @section("content")
     <h1 class="title is-1"> Profil Penjual </h1>
 
+
+    @if($penjual->terverifikasi)
+
+    @else
+        <article class="message is-warning">
+            <div class="message-body">
+                <span class="icon is-small mr-1">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </span>
+
+                Akun Anda belum diverifikasi oleh <strong>Admin</strong>, Anda belum dapat mengakses seluruh
+                fitur yang tersedia.
+            </div>
+        </article>
+    @endif
+
+
     @include("components.messages")
 
     <div class="box"

@@ -16,7 +16,7 @@ $factory->define(Penjual::class, function (Faker $faker) {
         "terverifikasi" => rand(0, 1),
         "user_id" => factory(User::class)
             ->create([
-                "level" => UserLevel::SELLER
+                "level" => UserLevel::PENJUAL
             ])->id,
     ];
 });

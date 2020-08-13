@@ -58,7 +58,7 @@ class PenjualRegistrationController extends Controller
             "name" => $data["name"],
             "username" => $data["username"],
             "password" => Hash::make($data["password"]),
-            "level" => UserLevel::SELLER,
+            "level" => UserLevel::PENJUAL,
         ]);
 
         $penjual = Penjual::query()->create([
