@@ -15,13 +15,13 @@
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
                             <li>
-                                <button wire:click="gotoPage({{ $page }})" class="pagination-link is-current" aria-label="Page {{ $page }}"
-                                   aria-current="page">{{ $page }}</button>
+                                <a href="#" wire:click="gotoPage({{ $page }})" class="pagination-link is-current" aria-label="Page {{ $page }}"
+                                   aria-current="page">{{ $page }}</a>
                             </li>
                         @else
                             <li>
-                                <button wire:click="gotoPage({{ $page }})" class="pagination-link"
-                                   aria-label="Goto page {{ $page }}">{{ $page }}</button>
+                                <a href=#" wire:click="gotoPage({{ $page }})" class="pagination-link"
+                                   aria-label="Goto page {{ $page }}">{{ $page }}</a>
                             </li>
                         @endif
                     @endforeach
