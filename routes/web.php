@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\PenjualController;
-use App\Http\Controllers\PenjualProdukForPenjual;
+use App\Http\Controllers\PenjualProdukForPenjualController;
 use App\Http\Controllers\PenjualProfileController;
 use App\Http\Controllers\PenjualRegistrationController;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +39,6 @@ Route::resource("penjual-profile", class_basename(PenjualProfileController::clas
     ->only(["edit", "update"])
     ->parameter("penjual-profile", "penjual");
 
-Route::resource("penjual.produk-for-penjual", class_basename(PenjualProdukForPenjual::class))
+Route::resource("penjual.produk-for-penjual", class_basename(PenjualProdukForPenjualController::class))
     ->parameter("produk-for-penjual", "produk")
     ->shallow();

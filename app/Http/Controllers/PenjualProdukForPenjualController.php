@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\MessageState;
+use App\Constants\SessionHelper;
 use App\Penjual;
+use App\Produk;
 use App\Providers\AuthServiceProvider;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 
-class PenjualProdukForPenjual extends Controller
+class PenjualProdukForPenjualController extends Controller
 {
     private ResponseFactory $responseFactory;
 
@@ -39,20 +43,41 @@ class PenjualProdukForPenjual extends Controller
      *
      * @return Response
      */
-    public function create()
+    public function create(Penjual $penjual)
     {
-        //
+        $this->authorize(AuthServiceProvider::MANAGE_OWN_PRODUK);
+
+        return $this->responseFactory->view("produk-for-penjual.create", [
+            "penjual" => $penjual
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, Penjual $penjual)
     {
-        //
+        $data = $request->validate([
+            "kode" => ["required", "string", Rule::unique(Produk::class)],
+            "nama" => ["required", "string"],
+            "deskripsi" => ["required", "string"],
+            "harga" => ["required", "numeric", "gte:0"],
+        ]);
+
+        $penjual->produks()->create($data);
+
+        SessionHelper::flashMessage(
+            __("messages.create.success"),
+            MessageState::STATE_SUCCESS,
+        );
+
+        return $this->responseFactory->redirectToRoute(
+            "penjual.produk-for-penjual.index",
+            $penjual
+        );
     }
 
     /**

@@ -3,6 +3,15 @@
 
     @include("components.messages")
 
+    <div class="my-2 has-text-right">
+        <a href="{{ route("penjual.produk-for-penjual.create", $this->penjual) }}" class="button is-primary">
+            <span> Tambah </span>
+            <span class="icon is-small">
+                <i class="fas fa-plus"></i>
+            </span>
+        </a>
+    </div>
+
     <div class="table-container my-5">
         <table class="table is-narrow is-fullwidth is-striped is-hoverable">
             <thead>
@@ -10,8 +19,8 @@
                 <th> #</th>
                 <th> Nama </th>
                 <th> Deskripsi </th>
-                <th> Harga </th>
-                <th> Kendali </th>
+                <th class="has-text-right"> Harga </th>
+                <th class="has-text-centered"> Kendali </th>
             </tr>
             </thead>
 
@@ -21,8 +30,8 @@
                     <td> {{ $this->produks->firstItem() + $loop->index }} </td>
                     <td> {{ $produk->nama }} </td>
                     <td> {{ $produk->deskripsi }} </td>
-                    <td> {{ $produk->harga }} </td>
-                    <td>
+                    <td class="has-text-right"> {{ Facades\App\Support\Formatter::currency($produk->harga) }} </td>
+                    <td class="has-text-centered">
                         <button class="button is-danger is-small" type="button">
                             <span class="icon is-small">
                                 <i class="fas fa-trash  "></i>
