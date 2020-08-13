@@ -11,6 +11,8 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class PenjualProdukForPenjualController extends Controller
@@ -65,9 +67,22 @@ class PenjualProdukForPenjualController extends Controller
             "nama" => ["required", "string"],
             "deskripsi" => ["required", "string"],
             "harga" => ["required", "numeric", "gte:0"],
+            "image" => ["nullable", "file", "mimes:jpg,jpeg,png"],
         ]);
 
-        $penjual->produks()->create($data);
+        DB::beginTransaction();
+
+        /** @var Produk $produk */
+        $produk = $penjual->produks()->create(Arr::except($data, [
+            "image"
+        ]));
+
+        if (isset($data["image"])) {
+            $produk->addMediaFromRequest("image")
+                ->toMediaCollection();
+        }
+
+        DB::commit();
 
         SessionHelper::flashMessage(
             __("messages.create.success"),
@@ -94,12 +109,14 @@ class PenjualProdukForPenjualController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Penjual  $penjual
+     * @param Produk $produk
      * @return Response
      */
-    public function edit(Penjual $penjual)
+    public function edit(Produk $produk)
     {
-        //
+        return $this->responseFactory->view("produk-for-penjual.edit", [
+            "produk" => $produk
+        ]);
     }
 
     /**

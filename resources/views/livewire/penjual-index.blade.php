@@ -21,7 +21,7 @@
             <tr>
                 <th> #</th>
                 <th> Nama Penjual </th>
-                <th> Nama Admin </th>
+                <th> Nama Admin / Nama Pengguna </th>
                 <th> No. Telepon</th>
                 <th> Alamat</th>
                 <th class="has-text-centered"> Terverifikasi?</th>
@@ -34,7 +34,10 @@
                 <tr>
                     <td> {{ $penjuals->firstItem() + $loop->index }} </td>
                     <td> {{ $penjual->nama }} </td>
-                    <td> {{ $penjual->user->name }} </td>
+                    <td>
+                        <span class="is-block"> {{ $penjual->user->name }} </span>
+                        <span class="is-block has-text-weight-bold"> {{ $penjual->user->username }} </span>
+                    </td>
                     <td> {{ $penjual->no_telepon }} </td>
                     <td> {{ $penjual->alamat }} </td>
                     <td class="has-text-centered">
@@ -47,7 +50,19 @@
                         </span>
                     </td>
                     <td class="has-text-centered">
-                        <button wire:click="toggleVerification({{ $penjual->id }})" class="button is-dark is-small">
+                        <button
+                            x-data="{}"
+                            x-on:click="
+                                window.confirmDialog()
+                                    .then(response => {
+                                        if (!response.value) {
+                                            return
+                                        }
+
+                                        window.livewire.emit('toggleVerification', {{ $penjual->id }})
+                                    })
+                                "
+                            class="button is-dark is-small">
                             @if($penjual->terverifikasi)
                                 <span class="icon is-small">
                                     <i class="fas fa-times-circle"></i>

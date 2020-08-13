@@ -20,7 +20,7 @@
                 <th> Nama </th>
                 <th> Deskripsi </th>
                 <th class="has-text-right"> Harga </th>
-                <th class="has-text-centered"> Kendali </th>
+                <th class="has-text-centered" style="width: 200px"> Kendali </th>
             </tr>
             </thead>
 
@@ -44,13 +44,22 @@
                                         window.livewire.emit('delete', {{ $produk->id }})
                                     })
                             "
-
                             class="button is-danger is-small" type="button">
                             <span class="icon is-small">
                                 <i class="fas fa-trash  "></i>
                             </span>
                             <span> Hapus </span>
                         </button>
+
+                        <a href="{{ route("produk-for-penjual.edit", $produk) }}" class="button is-primary is-small">
+                            <span class="icon is-small">
+                                <i class="fas fa-pencil-alt"></i>
+                            </span>
+                            <span>
+                                Ubah
+                            </span>
+                        </a>
+
                     </td>
                 </tr>
             @endforeach
@@ -59,6 +68,4 @@
     </div>
 
     {{ $this->produks->links() }}
-
-
 </div>

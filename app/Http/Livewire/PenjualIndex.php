@@ -28,10 +28,17 @@ class PenjualIndex extends Component
         "terverifikasi" => ["except" => ""],
     ];
 
+    protected $listeners = [
+        "toggleVerification" => "toggleVerification",
+    ];
+
     public function mount(Request $request)
     {
         $this->fill([
-            "terverifikasi" => $request->query("terverifikasi", self::TERVERIFIKASI_OPTION_ALL),
+            "terverifikasi" => $request->query(
+                "terverifikasi",
+                self::TERVERIFIKASI_OPTION_ALL
+            ),
         ]);
     }
 

@@ -33,7 +33,9 @@ class PenjualProdukForPenjualIndex extends Component
 
     public function getProduksProperty()
     {
-        return $this->penjual->produks()->paginate();
+        return $this->penjual->produks()
+            ->orderBy("nama")
+            ->paginate();
     }
 
     public function paginationView()

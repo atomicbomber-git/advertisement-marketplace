@@ -9,7 +9,8 @@
     </h1>
 
     <div class="box">
-        <form method="POST" action="{{ route("penjual.produk-for-penjual.store", $penjual) }}">
+        <form enctype="multipart/form-data" method="POST"
+              action="{{ route("penjual.produk-for-penjual.store", $penjual) }}">
             @csrf
 
             <div class="field">
@@ -103,6 +104,40 @@
                 @enderror
             </div>
 
+            <div class="field">
+                <label class="label"
+                       for="image"
+                > Gambar </label>
+
+                <div class="file is-fullwidth"
+                     x-data="{ file: null }"
+                >
+                    <label class="file-label">
+                        <input
+                            x-on:input="file = $event.target.files[0]"
+                            class="file-input" accept="image/png,image/jpeg,image.jpg" type="file" name="image">
+                        <span class="file-cta">
+                          <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                          </span>
+                          <span class="file-label">
+                            Pilih berkas gambar...
+                          </span>
+
+
+
+                        </span>
+                        <span class="file-name"
+                            x-text="!file ? 'Belum terdapat berkas' : file.name"
+                        >
+                        </span>
+                    </label>
+                </div>
+
+                @error('image')
+                <p class="help is-danger"> {{ $message }} </p>
+                @enderror
+            </div>
 
             <div class="has-text-right">
                 <button class="button is-primary">
