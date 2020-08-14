@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PenjualController;
 use App\Http\Controllers\PenjualProdukForPenjualController;
 use App\Http\Controllers\PenjualProfileController;
@@ -30,9 +31,8 @@ Route::get('/', function () {
     return redirect()->route("login");
 });
 
-Route::get("/home", function () {
-    return "home";
-})->name("home");
+Route::get("/home", [HomeController::class, "index"])
+    ->name("home");
 
 Route::resource("penjual", class_basename(PenjualController::class))
     ->only(["index"]);
