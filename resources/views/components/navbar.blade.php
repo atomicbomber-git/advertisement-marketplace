@@ -1,4 +1,4 @@
-<nav class="navbar is-info is-spaced"
+<nav class="navbar is-info"
      role="navigation"
      aria-label="main navigation"
 >

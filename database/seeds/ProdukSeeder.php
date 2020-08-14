@@ -42,7 +42,7 @@ class ProdukSeeder extends Seeder
             throw new \Exception("Failed to create image");
         }
 
-        $imageColor = imagecolorallocate($image, 0, 0, 0);
+        $imageColor = imagecolorallocate($image, rand(0, 255), rand(0, 255), rand(0, 255));
         $textColor = imagecolorallocate($image, rand(0, 255), rand(0, 255), rand(0, 255));
         imagestring($image, 1, 5, 5,  $text, $textColor);
         $tempImageFilepath = tempnam("/tmp", "tempimage");

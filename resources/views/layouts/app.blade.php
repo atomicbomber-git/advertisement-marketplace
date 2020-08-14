@@ -39,7 +39,7 @@
 </header>
 
 <main class="container py-4">
-    <div class="columns">
+    <section class="section columns">
         @auth
             @include('components.sidebar')
         @endauth
@@ -47,7 +47,7 @@
         <article class="column">
             @yield("content")
         </article>
-    </div>
+    </section>
 </main>
 
 @livewireScripts

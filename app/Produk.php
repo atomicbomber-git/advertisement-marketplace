@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Image\Image;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -19,6 +20,11 @@ class Produk extends Model implements HasMedia
 
     protected $table = "produk";
     protected $guarded = [];
+
+    public function penjual(): BelongsTo
+    {
+        return $this->belongsTo(Penjual::class);
+    }
 
     public function registerMediaConversions(Media $media = null): void
     {

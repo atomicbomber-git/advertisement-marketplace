@@ -8,6 +8,6 @@ class Formatter
 {
     public function currency(float $value): string
     {
-        return number_format($value);
+        return "Rp. " . number_format($value);
     }
 }
