@@ -8,10 +8,13 @@
         / Ubah
     </h1>
 
+    @include("components.messages")
+
     <div class="box">
         <form enctype="multipart/form-data" method="POST"
               action="{{ route("produk-for-penjual.update", $produk) }}">
             @csrf
+            @method("PUT")
 
             <div class="field">
                 <label class="label"
@@ -105,10 +108,13 @@
             </div>
 
             <div class="field">
-                <figure
-                    class="image is-4by3">
+                <figure>
                     <img
-                        src="{{ route("produk-thumb.show", $produk)  }}">
+                        src="{{ route("produk-thumb.show", $produk)  }}"
+                        alt="Thumbnail of {{ $produk->nama }}">
+                    <figcaption>
+                        Gambar Produk Sekarang
+                    </figcaption>
                 </figure>
             </div>
 
@@ -138,6 +144,9 @@
                         </span>
                     </label>
                 </div>
+                <p class="help">
+                    Kosongkan kolom diatas jika Anda tidak ingin mengubah gambar yang telah ada
+                </p>
 
                 @error('image')
                 <p class="help is-danger"> {{ $message }} </p>
@@ -146,7 +155,7 @@
 
             <div class="has-text-right">
                 <button class="button is-primary">
-                    Tambah
+                    Ubah
                 </button>
             </div>
         </form>

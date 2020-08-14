@@ -5,16 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdc3a6de-d5aa-4f83-95f2-d602e44c0a05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ProdukThumbController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PenjualProdukForPenjualController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PenjualProdukForPenjualController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/PenjualIndex.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/PenjualIndex.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Produk.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Produk.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/penjual-index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/penjual-index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/PenjualProdukForPenjualIndex.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/PenjualProdukForPenjualIndex.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/livewire/penjual-produk-for-penjual-index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/penjual-produk-for-penjual-index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/produk-for-penjual/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/produk-for-penjual/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/produk-for-penjual/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/produk-for-penjual/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +185,9 @@
       <workItem from="1597244655792" duration="6157000" />
       <workItem from="1597280803670" duration="16124000" />
       <workItem from="1597303726853" duration="2619000" />
-      <workItem from="1597310511246" duration="8825000" />
+      <workItem from="1597310511246" duration="10884000" />
+      <workItem from="1597364524992" duration="159000" />
+      <workItem from="1597364695984" duration="1243000" />
     </task>
     <servers />
   </component>
@@ -209,10 +206,10 @@
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
     <state x="571" y="0" width="768" height="1051" key="#PHP/0.0.1920.1053@0.0.1920.1053" timestamp="1597310565782" />
-    <state x="255" y="0" width="1400" height="1051" key="#Plugins" timestamp="1597323741827">
+    <state x="255" y="0" width="1400" height="1051" key="#Plugins" timestamp="1597364619387">
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
-    <state x="255" y="0" width="1400" height="1051" key="#Plugins/0.0.1920.1053@0.0.1920.1053" timestamp="1597323741827" />
+    <state x="255" y="0" width="1400" height="1051" key="#Plugins/0.0.1920.1053@0.0.1920.1053" timestamp="1597364619387" />
     <state x="473" y="238" width="964" height="573" key="#com.intellij.codeInsight.template.impl.EditVariableDialog" timestamp="1597321960350">
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
@@ -265,10 +262,10 @@
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
     <state x="0" y="0" width="1684" height="1053" key="SettingsEditor/0.0.1920.1053@0.0.1920.1053" timestamp="1597322000605" />
-    <state x="485" y="72" width="1098" height="917" key="StructurePopup" timestamp="1597323658937">
+    <state x="485" y="72" width="1098" height="917" key="StructurePopup" timestamp="1597364924607">
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
-    <state x="485" y="72" width="1098" height="917" key="StructurePopup/0.0.1920.1053@0.0.1920.1053" timestamp="1597323658937" />
+    <state x="485" y="72" width="1098" height="917" key="StructurePopup/0.0.1920.1053@0.0.1920.1053" timestamp="1597364924607" />
     <state x="100" y="99" width="1720" height="853" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1597284991120">
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
@@ -281,13 +278,13 @@
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
     <state x="597" y="399" width="1025" height="425" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1920.1053@0.0.1920.1053" timestamp="1597311008328" />
-    <state x="371" y="228" key="run.anything.popup" timestamp="1597325072485">
+    <state x="371" y="228" key="run.anything.popup" timestamp="1597365137759">
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
-    <state x="371" y="228" key="run.anything.popup/0.0.1920.1053@0.0.1920.1053" timestamp="1597325072485" />
-    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup" timestamp="1597324790729">
+    <state x="371" y="228" key="run.anything.popup/0.0.1920.1053@0.0.1920.1053" timestamp="1597365137759" />
+    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup" timestamp="1597365550664">
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
-    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup/0.0.1920.1053@0.0.1920.1053" timestamp="1597324790729" />
+    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup/0.0.1920.1053@0.0.1920.1053" timestamp="1597365550664" />
   </component>
 </project>

@@ -9,6 +9,7 @@ use App\Produk;
 use App\Providers\AuthServiceProvider;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
@@ -57,8 +58,8 @@ class PenjualProdukForPenjualController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request, Penjual $penjual)
     {
@@ -98,7 +99,7 @@ class PenjualProdukForPenjualController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Penjual  $penjual
+     * @param Penjual $penjual
      * @return Response
      */
     public function show(Penjual $penjual)
@@ -122,19 +123,50 @@ class PenjualProdukForPenjualController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Penjual  $penjual
-     * @return Response
+     * @param Request $request
+     * @param Penjual $penjual
+     * @return RedirectResponse
      */
-    public function update(Request $request, Penjual $penjual)
+    public function update(Request $request, Produk $produk)
     {
-        //
+        $data = $request->validate([
+            "kode" => ["required", "string", Rule::unique(Produk::class)->ignoreModel($produk)],
+            "nama" => ["required", "string"],
+            "deskripsi" => ["required", "string"],
+            "harga" => ["required", "numeric", "gte:0"],
+            "image" => ["nullable", "file", "mimes:jpg,jpeg,png"],
+        ]);
+
+        DB::beginTransaction();
+
+        $produk->update(Arr::except($data, [
+            "image"
+        ]));
+
+        if ($request->hasFile("image")) {
+            $produk
+                ->clearMediaCollection()
+                ->addMediaFromRequest("image")
+                ->toMediaCollection();
+        }
+
+        DB::commit();
+
+        SessionHelper::flashMessage(
+            __("messages.update.success"),
+            MessageState::STATE_SUCCESS,
+        );
+
+        return $this->responseFactory->redirectToRoute(
+            "produk-for-penjual.edit",
+            $produk
+        );
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Penjual  $penjual
+     * @param Penjual $penjual
      * @return Response
      */
     public function destroy(Penjual $penjual)

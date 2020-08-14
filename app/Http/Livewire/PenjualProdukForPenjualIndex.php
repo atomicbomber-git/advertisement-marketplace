@@ -6,6 +6,8 @@ use App\Constants\MessageState;
 use App\Constants\SessionHelper;
 use App\Penjual;
 use App\Produk;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -16,14 +18,20 @@ class PenjualProdukForPenjualIndex extends Component
 {
     use WithPagination;
     public $penjualId;
+    public $search;
 
     protected $listeners = [
         "delete" => "delete",
     ];
 
-    public function mount($penjualId)
+    protected $updatesQueryString = [
+        "search" => ["except" => ""],
+    ];
+
+    public function mount(Request $request, $penjualId)
     {
         $this->penjualId = $penjualId;
+        $this->search = $request->query("search");
     }
 
     public function getPenjualProperty()
@@ -31,9 +39,34 @@ class PenjualProdukForPenjualIndex extends Component
         return Penjual::query()->findOrFail($this->penjualId);
     }
 
+    private function getSearchFields()
+    {
+        return [
+            "nama",
+            "deskripsi",
+            "kode"
+        ];
+    }
+
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
+
     public function getProduksProperty()
     {
         return $this->penjual->produks()
+            ->when($this->search, function (Builder $builder) {
+                $keywords = explode(" ", $this->search);
+
+                $builder->where(function (Builder $builder) use ($keywords) {
+                    foreach ($this->getSearchFields() as $field) {
+                        foreach ($keywords as $keyword) {
+                            $builder->orWhere($field, "like", "{$keyword}%");
+                        }
+                    }
+                });
+            })
             ->orderBy("nama")
             ->paginate();
     }
