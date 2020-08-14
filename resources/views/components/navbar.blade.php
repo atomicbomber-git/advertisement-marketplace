@@ -37,16 +37,18 @@
                 <div class="navbar-item">
                     @guest
                         <div class="buttons">
-                            <a href="#" class="button is-small is-primary">
-                                <strong>
-                                    Daftar Pelanggan
-                                </strong>
-                            </a>
-                            <a href="{{ route("penjual-registrasi.create") }}" class="button is-small is-primary">
-                                <strong>
-                                    Daftar Penjual
-                                </strong>
-                            </a>
+                            @can(\App\Providers\AuthServiceProvider::REGISTER_ACCOUNT)
+                                <a href="{{ route("pelanggan-registrasi.create") }}" class="button is-small is-primary">
+                                    <strong>
+                                        Daftar Pelanggan
+                                    </strong>
+                                </a>
+                                <a href="{{ route("penjual-registrasi.create") }}" class="button is-small is-primary">
+                                    <strong>
+                                        Daftar Penjual
+                                    </strong>
+                                </a>
+                            @endcan
                             <a href="{{ route("login") }}" class="button is-small is-light">
                                 @lang("app.login")
                             </a>

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PelangganProfileController;
+use App\Http\Controllers\PelangganRegistrasiController;
 use App\Http\Controllers\PenjualController;
 use App\Http\Controllers\PenjualProdukForPenjualController;
 use App\Http\Controllers\PenjualProfileController;
@@ -28,7 +30,7 @@ Auth::routes([
 ]);
 
 Route::get('/', function () {
-    return redirect()->route("login");
+    return redirect()->route("home");
 });
 
 Route::get("/home", [HomeController::class, "index"])
@@ -40,9 +42,16 @@ Route::resource("penjual", class_basename(PenjualController::class))
 Route::resource("penjual-registrasi", class_basename(PenjualRegistrationController::class))
     ->only(["create", "store"]);
 
+Route::resource("pelanggan-registrasi", class_basename(PelangganRegistrasiController::class))
+    ->only(["create", "store"]);
+
 Route::resource("penjual-profile", class_basename(PenjualProfileController::class))
     ->only(["edit", "update"])
     ->parameter("penjual-profile", "penjual");
+
+Route::resource("pelanggan-profile", class_basename(PelangganProfileController::class))
+    ->only(["edit", "update"])
+    ->parameter("pelanggan-profile", "pelanggan");
 
 Route::resource("penjual.produk-for-penjual", class_basename(PenjualProdukForPenjualController::class))
     ->parameter("produk-for-penjual", "produk")
