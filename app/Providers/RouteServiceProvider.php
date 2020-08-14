@@ -26,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider
 
     public static function home()
     {
-        switch (auth()->user()->level) {
+        switch (auth()->user()->level ?? null) {
             case UserLevel::SUPER_ADMIN:
                 return route("penjual.index");
             case UserLevel::PENJUAL:

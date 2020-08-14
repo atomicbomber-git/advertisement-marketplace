@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bdc3a6de-d5aa-4f83-95f2-d602e44c0a05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Envoy.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="bdc3a6de-d5aa-4f83-95f2-d602e44c0a05" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -183,7 +181,7 @@
       <workItem from="1597303726853" duration="2619000" />
       <workItem from="1597310511246" duration="10884000" />
       <workItem from="1597364524992" duration="159000" />
-      <workItem from="1597364695984" duration="1644000" />
+      <workItem from="1597364695984" duration="1955000" />
     </task>
     <servers />
   </component>
@@ -278,9 +276,9 @@
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
     <state x="371" y="228" key="run.anything.popup/0.0.1920.1053@0.0.1920.1053" timestamp="1597366012369" />
-    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup" timestamp="1597366171431">
+    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup" timestamp="1597366361476">
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
-    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup/0.0.1920.1053@0.0.1920.1053" timestamp="1597366171431" />
+    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup/0.0.1920.1053@0.0.1920.1053" timestamp="1597366361476" />
   </component>
 </project>

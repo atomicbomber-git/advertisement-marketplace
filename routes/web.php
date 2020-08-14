@@ -30,6 +30,10 @@ Route::get('/', function () {
     return redirect()->route("login");
 });
 
+Route::get("/home", function () {
+    return "home";
+})->name("home");
+
 Route::resource("penjual", class_basename(PenjualController::class))
     ->only(["index"]);
 

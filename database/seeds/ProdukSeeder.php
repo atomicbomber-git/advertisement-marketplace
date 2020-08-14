@@ -21,12 +21,34 @@ class ProdukSeeder extends Seeder
 
         foreach ($penjuals as $penjual) {
             $penjual->produks()->createMany(
-                factory(Produk::class, 300)
+                factory(Produk::class, 50)
                     ->make()
                     ->toArray()
-            );
+            )->each(function (Produk $produk) {
+                $produk->addMedia(
+                    $this->generateImage("{$produk->kode}-{$produk->nama}")
+                )->toMediaCollection();
+            });
         }
 
         DB::commit();
+    }
+
+    private function generateImage($text)
+    {
+        $image = imagecreate(640, 480);
+
+        if (!$image) {
+            throw new \Exception("Failed to create image");
+        }
+
+        $imageColor = imagecolorallocate($image, 0, 0, 0);
+        $textColor = imagecolorallocate($image, rand(0, 255), rand(0, 255), rand(0, 255));
+        imagestring($image, 1, 5, 5,  $text, $textColor);
+        $tempImageFilepath = tempnam("/tmp", "tempimage");
+        imagepng($image, $tempImageFilepath);
+        imagedestroy($image);
+
+        return $tempImageFilepath;
     }
 }
