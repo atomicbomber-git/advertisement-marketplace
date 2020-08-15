@@ -8,7 +8,7 @@ use App\Http\Controllers\PenjualController;
 use App\Http\Controllers\PenjualProdukForPenjualController;
 use App\Http\Controllers\PenjualProfileController;
 use App\Http\Controllers\PenjualRegistrationController;
-use App\Http\Controllers\ProdukForGuestController;
+use App\Http\Controllers\ProdukForPelanggan;
 use App\Http\Controllers\ProdukThumbController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +66,11 @@ Route::resource("produk-thumb", class_basename(ProdukThumbController::class))
     ->parameter("produk-thumb", "produk")
     ->only(["show"]);
 
-Route::resource("penjual.produk-for-guest", class_basename(ProdukForGuestController::class))
-    ->parameter("produk-for-guest", "produk:kode")
+Route::resource("penjual.produk-for-pelanggan", class_basename(ProdukForPelanggan::class))
+    ->parameter("produk-for-pelanggan", "produk:kode")
     ->only(["show"]);
+
+Route::resource("pelanggan.invoice-for-pelanggan", class_basename(\App\Http\Controllers\InvoiceForPelanggan::class))
+    ->parameter("invoice-for-pelanggan", "invoice")
+    ->only(["index", "show", "destroy"])
+    ->shallow();

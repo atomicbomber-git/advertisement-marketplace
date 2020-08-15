@@ -79,9 +79,16 @@
                                     </a>
                                 @endcan
 
+                                @can(\App\Providers\AuthServiceProvider::MANAGE_OWN_PELANGGAN_PROFILE)
+                                    <a href="{{ route("pelanggan.invoice-for-pelanggan.index", auth()->user()->pelanggan) }}" class="navbar-item">
+                                        Keranjang Belanja
+                                    </a>
+                                @endcan
+
                                 @canany([
                                     \App\Providers\AuthServiceProvider::MANAGE_OWN_PENJUAL_PROFILE,
-                                    \App\Providers\AuthServiceProvider::MANAGE_OWN_PELANGGAN_PROFILE
+                                    \App\Providers\AuthServiceProvider::MANAGE_OWN_PELANGGAN_PROFILE,
+                                    \App\Providers\AuthServiceProvider::MANAGE_OWN_PELANGGAN_INVOICES,
                                 ])
                                     <hr class="navbar-divider">
                                 @endcanany

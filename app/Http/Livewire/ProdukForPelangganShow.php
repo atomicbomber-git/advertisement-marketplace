@@ -18,7 +18,7 @@ use Livewire\Component;
  * @property InvoiceItem invoiceItem
  * @property Penjual penjual
  */
-class ProdukForGuestShow extends Component
+class ProdukForPelangganShow extends Component
 {
     public int $produkId;
     public int $invoiceItemQuantity;
@@ -119,6 +119,6 @@ class ProdukForGuestShow extends Component
 
     public function render()
     {
-        return view('livewire.produk-for-guest-show');
+        return view('livewire.produk-for-pelanggan-show');
     }
 }

@@ -40,10 +40,10 @@
             </p>
 
             <div class="my-3">
-                @can(\App\Providers\AuthServiceProvider::CREATE_PURCHASE)
+                @can(\App\Providers\AuthServiceProvider::CREATE_PELANGGAN_INVOICE)
                     @if($this->invoice === null || $this->invoiceItem === null)
                         <button wire:click="addInvoiceItem"
-                                class="button is-primary"
+                                class="button is-info"
                         >
                         <span class="icon is-small">
                             <i class="fas fa-plus"></i>
@@ -58,7 +58,7 @@
 
                                 <button
                                         wire:click="decrementInvoiceItemQuantity"
-                                        class="button is-primary"
+                                        class="button is-info"
                                 >
                                     <span class="icon">
                                         <i class="fas fa-minus"></i>
@@ -80,7 +80,7 @@
                             <p class="control">
                                 <button
                                         wire:click="incrementInvoiceItemQuantity"
-                                        class="button is-primary"
+                                        class="button is-info"
                                 >
                                     <span class="icon">
                                         <i class="fas fa-plus"></i>

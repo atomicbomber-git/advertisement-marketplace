@@ -32,4 +32,10 @@ class Pelanggan extends Model
     {
         return $this->hasMany(Invoice::class);
     }
+
+    public function draft_invoices(): HasMany
+    {
+        return $this->invoices()
+            ->where("status", InvoiceStatus::DRAFT);
+    }
 }

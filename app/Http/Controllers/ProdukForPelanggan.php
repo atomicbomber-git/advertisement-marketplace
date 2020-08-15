@@ -6,7 +6,7 @@ use App\Penjual;
 use App\Produk;
 use Illuminate\Contracts\Routing\ResponseFactory;
 
-class ProdukForGuestController extends Controller
+class ProdukForPelanggan extends Controller
 {
     private ResponseFactory $responseFactory;
 
@@ -24,7 +24,7 @@ class ProdukForGuestController extends Controller
      */
     public function show(Penjual $penjual, Produk $produk)
     {
-        return $this->responseFactory->view("produk-for-guest.show", [
+        return $this->responseFactory->view("produk-for-pelanggan.show", [
             "produk" => $produk,
         ]);
     }
