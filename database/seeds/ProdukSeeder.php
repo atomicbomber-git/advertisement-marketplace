@@ -15,7 +15,11 @@ class ProdukSeeder extends Seeder
     public function run()
     {
         /** @var Penjual[] $penjuals */
-        $penjuals = Penjual::query()->get();
+        $penjuals = Penjual::query()
+            ->where([
+                "terverifikasi" => 1,
+            ])
+            ->get();
 
         DB::beginTransaction();
 

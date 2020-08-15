@@ -12,7 +12,6 @@
                     </div>
                     <div class="card-content">
                         <div class="content">
-
                             <span class="is-uppercase is-block has-text-weight-bold">
                                 {{ $produk->nama }}
                             </span>

@@ -5,22 +5,20 @@ namespace App\Http\Livewire;
 use App\Constants\MessageState;
 use App\Constants\SessionHelper;
 use App\Http\Livewire\Traits\WithCustomPagination;
-use App\Penjual;
+use App\Pelanggan;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class PenjualIndex extends Component
+class PelangganIndex extends Component
 {
     use WithCustomPagination;
-
-    public $terverifikasi = "";
 
     const TERVERIFIKASI_OPTION_ALL = "all";
     const TERVERIFIKASI_OPTION_YES = "yes";
     const TERVERIFIKASI_OPTION_NO = "no";
-
+    public $terverifikasi = "";
     public $terverifikasiOptions = [
         self::TERVERIFIKASI_OPTION_ALL => "Semua",
         self::TERVERIFIKASI_OPTION_NO => "Tidak Terverifikasi",
@@ -45,10 +43,10 @@ class PenjualIndex extends Component
         ]);
     }
 
-    public function toggleVerification($penjualId)
+    public function toggleVerification($pelangganId)
     {
-        Penjual::query()
-            ->where("id", $penjualId)
+        Pelanggan::query()
+            ->where("id", $pelangganId)
             ->update([
                 "terverifikasi" => DB::raw("NOT terverifikasi")
             ]);
@@ -61,18 +59,16 @@ class PenjualIndex extends Component
 
     public function render()
     {
-        return view('livewire.penjual-index', [
-            "penjuals" => Penjual::query()
+        return view('livewire.pelanggan-index', [
+            "pelanggans" => Pelanggan::query()
                 ->when($this->terverifikasi !== self::TERVERIFIKASI_OPTION_ALL, function (Builder $builder) {
                     if ($this->terverifikasi === self::TERVERIFIKASI_OPTION_YES) {
                         $builder->where("terverifikasi", 1);
-                    }
-                    elseif ($this->terverifikasi === self::TERVERIFIKASI_OPTION_NO) {
+                    } elseif ($this->terverifikasi === self::TERVERIFIKASI_OPTION_NO) {
                         $builder->where("terverifikasi", 0);
                     }
                 })
                 ->with("user")
-                ->orderBy("nama")
                 ->paginate()
         ]);
     }

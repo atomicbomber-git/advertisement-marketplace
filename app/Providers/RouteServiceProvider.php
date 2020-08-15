@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Constants\UserLevel;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
@@ -26,12 +27,19 @@ class RouteServiceProvider extends ServiceProvider
 
     public static function home()
     {
-        switch (auth()->user()->level ?? null) {
+        $user = optional(Auth::user())
+            ->load([
+                "pelanggan",
+                "penjual",
+            ]);
+
+        switch ($user->level ?? null) {
             case UserLevel::SUPER_ADMIN:
                 return route("penjual.index");
             case UserLevel::PENJUAL:
-                return route("penjual-profile.edit", auth()->user()->penjual ?? null);
+                return route("penjual-profile.edit", $user->penjual ?? null);
             case UserLevel::PELANGGAN:
+                return route("pelanggan-profile.edit", $user->pelanggan ?? null);
             default:
                 return route("home");
         }

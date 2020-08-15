@@ -28,9 +28,9 @@
              class="navbar-menu"
         >
             <div class="navbar-start">
-{{--                <a class="navbar-item">--}}
-{{--                    Home--}}
-{{--                </a>--}}
+                {{--                <a class="navbar-item">--}}
+                {{--                    Home--}}
+                {{--                </a>--}}
             </div>
 
             <div class="navbar-end">
@@ -38,37 +38,69 @@
                     @guest
                         <div class="buttons">
                             @can(\App\Providers\AuthServiceProvider::REGISTER_ACCOUNT)
-                                <a href="{{ route("pelanggan-registrasi.create") }}" class="button is-small is-primary">
+                                <a href="{{ route("pelanggan-registrasi.create") }}"
+                                   class="button is-small is-primary"
+                                >
                                     <strong>
                                         Daftar Pelanggan
                                     </strong>
                                 </a>
-                                <a href="{{ route("penjual-registrasi.create") }}" class="button is-small is-primary">
+                                <a href="{{ route("penjual-registrasi.create") }}"
+                                   class="button is-small is-primary"
+                                >
                                     <strong>
                                         Daftar Penjual
                                     </strong>
                                 </a>
                             @endcan
-                            <a href="{{ route("login") }}" class="button is-small is-light">
+                            <a href="{{ route("login") }}"
+                               class="button is-small is-light"
+                            >
                                 @lang("app.login")
                             </a>
                         </div>
                     @else
-                        <div class="buttons">
-                            <form action="{{ route("logout") }}"
-                                  method="POST"
-                            >
-                                @csrf
-                                <button class="button is-small is-danger">
-                                    <span class="icon is-small">
-                                        <i class="fas fa-sign-out-alt"></i>
-                                    </span>
 
-                                    <span> @lang("app.logout") </span>
-                                </button>
-                            </form>
-                        </div
-                        >
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">
+                                {{ auth()->user()->name  }}
+                            </a>
+
+                            <div class="navbar-dropdown">
+                                @can(\App\Providers\AuthServiceProvider::MANAGE_OWN_PENJUAL_PROFILE)
+                                    <a href="{{ route("penjual-profile.edit") }}" class="navbar-item">
+                                        Profil
+                                    </a>
+                                @endcan
+
+                                @can(\App\Providers\AuthServiceProvider::MANAGE_OWN_PELANGGAN_PROFILE)
+                                    <a href="{{ route("pelanggan-profile.edit") }}" class="navbar-item">
+                                        Profil
+                                    </a>
+                                @endcan
+
+                                @canany([
+                                    \App\Providers\AuthServiceProvider::MANAGE_OWN_PENJUAL_PROFILE,
+                                    \App\Providers\AuthServiceProvider::MANAGE_OWN_PELANGGAN_PROFILE
+                                ])
+                                    <hr class="navbar-divider">
+                                @endcanany
+
+                                <form id="logoutForm"
+                                      method="POST"
+                                      action="{{ route("logout") }}"
+                                >
+                                    @csrf
+                                </form>
+
+                                <a href="#"
+                                   onclick="document.querySelector('#logoutForm').submit()"
+                                   class="navbar-item"
+                                >
+                                    Keluar
+                                </a>
+                            </div>
+                        </div>
                     @endguest
                 </div>
             </div>

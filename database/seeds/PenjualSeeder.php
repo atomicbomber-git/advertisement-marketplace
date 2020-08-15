@@ -18,7 +18,10 @@ class PenjualSeeder extends Seeder
     {
         DB::transaction(function () {
             factory(Penjual::class, 5)
-                ->make(["terverifikasi" => 1])
+                ->make([
+                    "terverifikasi" => 1,
+                    "user_id" => null,
+                ])
                 ->each(function (Penjual $penjual, $index) {
                     $usernameOrPassword = "penjual_{$index}";
 
@@ -32,6 +35,11 @@ class PenjualSeeder extends Seeder
 
                     $user->penjual()->save($penjual);
                 });
+
+            factory(Penjual::class, 100)
+                ->create([
+                    "terverifikasi" => 0,
+                ]);
         });
     }
 }

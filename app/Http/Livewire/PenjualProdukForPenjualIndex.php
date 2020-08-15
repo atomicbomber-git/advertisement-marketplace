@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Constants\MessageState;
 use App\Constants\SessionHelper;
+use App\Http\Livewire\Traits\WithCustomPagination;
 use App\Penjual;
 use App\Produk;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,7 +17,8 @@ use Livewire\WithPagination;
  */
 class PenjualProdukForPenjualIndex extends Component
 {
-    use WithPagination;
+    use WithCustomPagination;
+
     public $penjualId;
     public $search;
 
@@ -48,11 +50,6 @@ class PenjualProdukForPenjualIndex extends Component
         ];
     }
 
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-
     public function getProduksProperty()
     {
         return $this->penjual->produks()
@@ -69,11 +66,6 @@ class PenjualProdukForPenjualIndex extends Component
             })
             ->orderBy("nama")
             ->paginate();
-    }
-
-    public function paginationView()
-    {
-        return "livewire.pagination.bulma";
     }
 
     public function delete($produkId)

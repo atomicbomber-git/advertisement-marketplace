@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Gate;
 class AuthServiceProvider extends ServiceProvider
 {
     const MANAGE_ANY_PENJUAL = "manage-any-penjual";
+    const MANAGE_ANY_PELANGGAN = "manage-any-pelanggan";
     const MANAGE_OWN_PENJUAL_PROFILE = "manage-own-penjual-profile";
     const MANAGE_OWN_PELANGGAN_PROFILE = "manage-own-pelanggan-profile";
     const MANAGE_OWN_PRODUK = "manage-own-produk";
@@ -36,6 +37,10 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define(self::MANAGE_ANY_PENJUAL, function (User $user) {
+            return $user->level === UserLevel::SUPER_ADMIN;
+        });
+
+        Gate::define(self::MANAGE_ANY_PELANGGAN, function (User $user) {
             return $user->level === UserLevel::SUPER_ADMIN;
         });
 

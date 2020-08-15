@@ -35,6 +35,14 @@
                     Penjual
                 </a>
             @endcan
+
+            @can(\App\Providers\AuthServiceProvider::MANAGE_ANY_PELANGGAN)
+                <a
+                        href="{{ route("pelanggan.index") }}"
+                        class="{{ \Illuminate\Support\Facades\Route::is("pelanggan.index") ? "is-active" : "" }}" >
+                    Pelanggan
+                </a>
+            @endcan
         </li>
     </ul>
 </aside>

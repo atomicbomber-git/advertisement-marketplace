@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PelangganProfileController;
 use App\Http\Controllers\PelangganRegistrasiController;
 use App\Http\Controllers\PenjualController;
@@ -37,6 +38,9 @@ Route::get("/home", [HomeController::class, "index"])
     ->name("home");
 
 Route::resource("penjual", class_basename(PenjualController::class))
+    ->only(["index"]);
+
+Route::resource("pelanggan", class_basename(PelangganController::class))
     ->only(["index"]);
 
 Route::resource("penjual-registrasi", class_basename(PenjualRegistrationController::class))
