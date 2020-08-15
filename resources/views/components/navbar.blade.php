@@ -68,13 +68,13 @@
 
                             <div class="navbar-dropdown">
                                 @can(\App\Providers\AuthServiceProvider::MANAGE_OWN_PENJUAL_PROFILE)
-                                    <a href="{{ route("penjual-profile.edit") }}" class="navbar-item">
+                                    <a href="{{ route("penjual-profile.edit", auth()->user()->penjual) }}" class="navbar-item">
                                         Profil
                                     </a>
                                 @endcan
 
                                 @can(\App\Providers\AuthServiceProvider::MANAGE_OWN_PELANGGAN_PROFILE)
-                                    <a href="{{ route("pelanggan-profile.edit") }}" class="navbar-item">
+                                    <a href="{{ route("pelanggan-profile.edit", auth()->user()->pelanggan) }}" class="navbar-item">
                                         Profil
                                     </a>
                                 @endcan

@@ -39,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
             case UserLevel::PENJUAL:
                 return route("penjual-profile.edit", $user->penjual ?? null);
             case UserLevel::PELANGGAN:
-                return route("pelanggan-profile.edit", $user->pelanggan ?? null);
+                return route("home", $user->pelanggan ?? null);
             default:
                 return route("home");
         }

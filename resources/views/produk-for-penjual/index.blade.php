@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("layouts.app-admin")
 
 @section("content")
     <livewire:penjual-produk-for-penjual-index

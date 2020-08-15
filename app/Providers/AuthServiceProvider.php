@@ -16,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
     const MANAGE_OWN_PENJUAL_PROFILE = "manage-own-penjual-profile";
     const MANAGE_OWN_PELANGGAN_PROFILE = "manage-own-pelanggan-profile";
     const MANAGE_OWN_PRODUK = "manage-own-produk";
+    const CREATE_PURCHASE = "create-purchase";
     const REGISTER_ACCOUNT = "register-account";
 
     /**
@@ -44,17 +45,22 @@ class AuthServiceProvider extends ServiceProvider
             return $user->level === UserLevel::SUPER_ADMIN;
         });
 
-        Gate::define(self::MANAGE_OWN_PENJUAL_PROFILE, function (User $user, ?Penjual $penjual = null) {
-            return $user->id === ($penjual->user_id ?? null);
+        Gate::define(self::MANAGE_OWN_PENJUAL_PROFILE, function (User $user) {
+            return $user->level === UserLevel::PENJUAL;
         });
 
-        Gate::define(self::MANAGE_OWN_PELANGGAN_PROFILE, function (User $user, ?Pelanggan $pelanggan = null) {
-            return $user->id === ($pelanggan->user_id ?? null);
+        Gate::define(self::MANAGE_OWN_PELANGGAN_PROFILE, function (User $user) {
+            return $user->level === UserLevel::PELANGGAN;
         });
 
         Gate::define(self::MANAGE_OWN_PRODUK, function (User $user) {
             return $user->level == UserLevel::PENJUAL
                 && $user->penjual->terverifikasi == 1;
+        });
+
+        Gate::define(self::CREATE_PURCHASE, function (User $user) {
+            return $user->level === UserLevel::PELANGGAN
+                && $user->pelanggan->terverifikasi === 1;
         });
 
         Gate::define(self::REGISTER_ACCOUNT, function (?User $user) {

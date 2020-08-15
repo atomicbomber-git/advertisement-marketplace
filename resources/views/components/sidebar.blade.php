@@ -4,7 +4,7 @@
     </p>
     <ul class="menu-list">
         <li>
-            @can(\App\Providers\AuthServiceProvider::MANAGE_OWN_PENJUAL_PROFILE, auth()->user()->penjual)
+            @can(\App\Providers\AuthServiceProvider::MANAGE_OWN_PENJUAL_PROFILE)
                 <a
                         href="{{ route("penjual-profile.edit", auth()->user()->penjual) }}"
                         class="{{ \Illuminate\Support\Facades\Route::is("penjual-profile.*") ? "is-active" : "" }}" >
@@ -12,7 +12,7 @@
                 </a>
             @endcan
 
-            @can(\App\Providers\AuthServiceProvider::MANAGE_OWN_PELANGGAN_PROFILE, auth()->user()->pelanggan)
+            @can(\App\Providers\AuthServiceProvider::MANAGE_OWN_PELANGGAN_PROFILE)
                 <a
                         href="{{ route("pelanggan-profile.edit", auth()->user()->pelanggan) }}"
                         class="{{ \Illuminate\Support\Facades\Route::is("pelanggan-profile.*") ? "is-active" : "" }}" >

@@ -8,6 +8,7 @@ use App\Http\Controllers\PenjualController;
 use App\Http\Controllers\PenjualProdukForPenjualController;
 use App\Http\Controllers\PenjualProfileController;
 use App\Http\Controllers\PenjualRegistrationController;
+use App\Http\Controllers\ProdukForGuestController;
 use App\Http\Controllers\ProdukThumbController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -63,4 +64,8 @@ Route::resource("penjual.produk-for-penjual", class_basename(PenjualProdukForPen
 
 Route::resource("produk-thumb", class_basename(ProdukThumbController::class))
     ->parameter("produk-thumb", "produk")
+    ->only(["show"]);
+
+Route::resource("penjual.produk-for-guest", class_basename(ProdukForGuestController::class))
+    ->parameter("produk-for-guest", "produk:kode")
     ->only(["show"]);

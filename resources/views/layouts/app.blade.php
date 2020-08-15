@@ -38,16 +38,8 @@
     @include('components.navbar')
 </header>
 
-<main class="container py-4">
-    <section class="section columns">
-        @auth
-            @include('components.sidebar')
-        @endauth
-
-        <article class="column">
-            @yield("content")
-        </article>
-    </section>
+<main class="container">
+    @yield("main")
 </main>
 
 @livewireScripts
