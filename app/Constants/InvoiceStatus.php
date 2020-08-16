@@ -7,6 +7,7 @@ namespace App\Constants;
 class InvoiceStatus
 {
     const DRAFT = "DRAFT";
-    const ACCEPTED = "ACCEPTED";
-    const CANCELED = "CANCELED";
+    const UNPAID = "BELUM_LUNAS";
+    const PAID = "LUNAS";
+    const CANCELED = "DIBATALKAN";
 }

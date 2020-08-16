@@ -20,6 +20,15 @@
                 </a>
             @endcan
 
+            @can(\App\Providers\AuthServiceProvider::MANAGE_OWN_PELANGGAN_PROFILE)
+                <a
+                        href="{{ route("pelanggan.invoice-for-pelanggan.index", auth()->user()->pelanggan) }}"
+                        class="{{ \Illuminate\Support\Facades\Route::is("pelanggan.invoice-for-pelanggan.*") ? "is-active" : "" }}"
+                >
+                    Invoice
+                </a>
+            @endcan
+
             @can(\App\Providers\AuthServiceProvider::MANAGE_OWN_PRODUK)
                 <a
                         href="{{ route("penjual.produk-for-penjual.index", auth()->user()->penjual) }}"

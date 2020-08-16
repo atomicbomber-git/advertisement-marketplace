@@ -10,4 +10,9 @@ class Formatter
     {
         return "Rp. " . number_format($value);
     }
+
+    public function date($value): string
+    {
+
+    }
 }

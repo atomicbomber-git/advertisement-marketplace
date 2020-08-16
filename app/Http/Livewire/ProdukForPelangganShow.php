@@ -72,6 +72,10 @@ class ProdukForPelangganShow extends Component
 
     public function getInvoiceProperty()
     {
+        if ($this->user === null) {
+            return null;
+        }
+
         return $this->user->pelanggan
             ->draft_invoice()
             ->where("penjual_id", $this->penjual->id)

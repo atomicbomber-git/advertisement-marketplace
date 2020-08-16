@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Constants\InvoiceStatus;
 use App\Constants\UserLevel;
+use App\Invoice;
 use App\Pelanggan;
 use App\Penjual;
 use App\User;
@@ -18,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
     const MANAGE_OWN_PELANGGAN_INVOICES = "manage-own-invoices";
     const MANAGE_OWN_PRODUK = "manage-own-produk";
     const CREATE_PELANGGAN_INVOICE = "create-pelanggan-invoice";
+    const EDIT_PELANGGAN_INVOICE = "edit-pelanggan-invoice";
     const REGISTER_ACCOUNT = "register-account";
 
     /**
@@ -67,6 +70,15 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define(self::CREATE_PELANGGAN_INVOICE, function (User $user) {
             return $user->level === UserLevel::PELANGGAN
                 && $user->pelanggan->terverifikasi === 1;
+        });
+
+        Gate::define(self::EDIT_PELANGGAN_INVOICE, function (User $user, Invoice $invoice) {
+            return true
+                && $user->level === UserLevel::PELANGGAN
+                && $user->pelanggan->terverifikasi === 1
+                && $user->pelanggan->id === $invoice->pelanggan_id
+                && $invoice->status === InvoiceStatus::DRAFT
+                ;
         });
 
         Gate::define(self::REGISTER_ACCOUNT, function (?User $user) {
