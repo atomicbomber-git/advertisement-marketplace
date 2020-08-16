@@ -9,7 +9,7 @@
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="{{ route("penjual-for-pembeli.show", $this->produk->penjual_id) }}">
                     {{ $this->penjual->nama }}
                 </a>
             </li>

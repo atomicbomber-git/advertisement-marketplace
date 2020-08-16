@@ -7,6 +7,7 @@ use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PelangganProfileController;
 use App\Http\Controllers\PelangganRegistrasiController;
 use App\Http\Controllers\PenjualController;
+use App\Http\Controllers\PenjualForPembeliController;
 use App\Http\Controllers\PenjualProdukForPenjualController;
 use App\Http\Controllers\PenjualProfileController;
 use App\Http\Controllers\PenjualRegistrationController;
@@ -70,6 +71,10 @@ Route::resource("produk-thumb", class_basename(ProdukThumbController::class))
 
 Route::resource("penjual.produk-for-pelanggan", class_basename(ProdukForPelanggan::class))
     ->parameter("produk-for-pelanggan", "produk:kode")
+    ->only(["show"]);
+
+Route::resource("penjual-for-pembeli", class_basename(PenjualForPembeliController::class))
+    ->parameter("penjual-for-pembeli", "penjual")
     ->only(["show"]);
 
 Route::resource("pelanggan.invoice-for-pelanggan", class_basename(InvoiceForPelangganController::class))
