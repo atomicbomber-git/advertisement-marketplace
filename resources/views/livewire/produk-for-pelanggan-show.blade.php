@@ -53,9 +53,15 @@
                         </span>
                         </button>
                     @else
+                        <a
+                                class="button is-info my-3"
+                                href="{{ route("pelanggan.invoice-for-pelanggan.edit", [$this->invoice->pelanggan_id, $this->invoice]) }}">
+                            Checkout
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+
                         <div class="field has-addons has-addons-left">
                             <p class="control">
-
                                 <button
                                         wire:click="decrementInvoiceItemQuantity"
                                         class="button is-info"

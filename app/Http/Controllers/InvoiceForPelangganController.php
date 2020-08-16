@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Invoice;
-use App\Pelanggan;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
-class InvoiceForPelanggan extends Controller
+class InvoiceForPelangganController extends Controller
 {
     private ResponseFactory $responseFactory;
 
@@ -19,7 +19,7 @@ class InvoiceForPelanggan extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index($pelanggan)
     {
@@ -31,7 +31,7 @@ class InvoiceForPelanggan extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -42,7 +42,7 @@ class InvoiceForPelanggan extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -52,8 +52,8 @@ class InvoiceForPelanggan extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Invoice  $invoice
-     * @return \Illuminate\Http\Response
+     * @param Invoice $invoice
+     * @return Response
      */
     public function show(Invoice $invoice)
     {
@@ -63,20 +63,22 @@ class InvoiceForPelanggan extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Invoice  $invoice
-     * @return \Illuminate\Http\Response
+     * @param Invoice $invoice
+     * @return Response
      */
-    public function edit(Invoice $invoice)
+    public function edit($invoice)
     {
-        //
+        return $this->responseFactory->view("invoice-for-pelanggan.edit", [
+            "invoice_id" => $invoice
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Invoice  $invoice
-     * @return \Illuminate\Http\Response
+     * @param Invoice $invoice
+     * @return Response
      */
     public function update(Request $request, Invoice $invoice)
     {
@@ -86,8 +88,8 @@ class InvoiceForPelanggan extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Invoice  $invoice
-     * @return \Illuminate\Http\Response
+     * @param Invoice $invoice
+     * @return Response
      */
     public function destroy(Invoice $invoice)
     {

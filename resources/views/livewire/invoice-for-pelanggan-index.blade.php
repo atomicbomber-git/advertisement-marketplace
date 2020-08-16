@@ -1,4 +1,8 @@
 <div>
+    <h1 class="title is-1">
+        Invoice
+    </h1>
+
     @include("components.messages")
 
     <div class="select">
@@ -40,7 +44,7 @@
                     </td>
                     <td class="has-text-centered">
                         @can(\App\Providers\AuthServiceProvider::EDIT_PELANGGAN_INVOICE, $invoice)
-                            <a href="{{ route("invoice-for-pelanggan.edit", $invoice) }}"
+                            <a href="{{ route("pelanggan.invoice-for-pelanggan.edit", [$invoice->pelanggan_id, $invoice]) }}"
                                class="button is-info is-small"
                             >
                                 <span class="icon is-small">

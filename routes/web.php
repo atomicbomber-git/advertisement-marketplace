@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceCancellationForPelangganController;
-use App\Http\Controllers\InvoiceForPelanggan;
+use App\Http\Controllers\InvoiceForPelangganController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PelangganProfileController;
 use App\Http\Controllers\PelangganRegistrasiController;
@@ -72,7 +72,6 @@ Route::resource("penjual.produk-for-pelanggan", class_basename(ProdukForPelangga
     ->parameter("produk-for-pelanggan", "produk:kode")
     ->only(["show"]);
 
-Route::resource("pelanggan.invoice-for-pelanggan", class_basename(InvoiceForPelanggan::class))
+Route::resource("pelanggan.invoice-for-pelanggan", class_basename(InvoiceForPelangganController::class))
     ->parameter("invoice-for-pelanggan", "invoice")
-    ->only(["index", "edit", "update", "show", "destroy"])
-    ->shallow();
+    ->only(["index", "edit", "update", "show", "destroy"]);

@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdc3a6de-d5aa-4f83-95f2-d602e44c0a05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/components/invoice-status.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/advertisement-marketplace.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/advertisement-marketplace.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Livewire/InvoiceForPelangganEdit.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/livewire/invoice-for-pelanggan-edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Constants/InvoiceStatus.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Constants/InvoiceStatus.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/InvoiceForPelangganIndex.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/InvoiceForPelangganIndex.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ProdukForPelangganShow.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/ProdukForPelangganShow.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Invoice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Support/Formatter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Support/Formatter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/sidebar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InvoiceForPelanggan.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InvoiceForPelangganController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/InvoiceItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/InvoiceItem.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/invoice-for-pelanggan/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoice-for-pelanggan/edit.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/livewire/invoice-for-pelanggan-index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/invoice-for-pelanggan-index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -204,7 +197,7 @@
       <workItem from="1597364695984" duration="1955000" />
       <workItem from="1597391049626" duration="6640000" />
       <workItem from="1597454184630" duration="20995000" />
-      <workItem from="1597536296513" duration="4130000" />
+      <workItem from="1597536296513" duration="7621000" />
     </task>
     <servers />
   </component>
@@ -215,10 +208,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="0" y="0" width="1910" height="1051" key="#Live_Templates" timestamp="1597407302739">
+    <state x="0" y="0" width="1910" height="1051" key="#Live_Templates" timestamp="1597550478905">
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
-    <state x="0" y="0" width="1910" height="1051" key="#Live_Templates/0.0.1920.1053@0.0.1920.1053" timestamp="1597407302739" />
+    <state x="0" y="0" width="1910" height="1051" key="#Live_Templates/0.0.1920.1053@0.0.1920.1053" timestamp="1597550478905" />
     <state x="571" y="0" width="768" height="1051" key="#PHP" timestamp="1597310565782">
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
@@ -239,10 +232,10 @@
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
     <state x="627" y="44" width="655" height="961" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1053@0.0.1920.1053" timestamp="1597247833505" />
-    <state x="605" y="0" width="699" height="1051" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1597540661896">
+    <state x="605" y="0" width="699" height="1051" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1597549233690">
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
-    <state x="605" y="0" width="699" height="1051" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1053@0.0.1920.1053" timestamp="1597540661896" />
+    <state x="605" y="0" width="699" height="1051" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1053@0.0.1920.1053" timestamp="1597549233690" />
     <state x="496" y="113" width="917" height="822" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1597454400291">
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
@@ -283,10 +276,10 @@
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
     <state x="695" y="410" width="520" height="229" key="NewPhpFileDialog/0.0.1920.1053@0.0.1920.1053" timestamp="1597305414092" />
-    <state x="0" y="0" width="1684" height="1053" key="SettingsEditor" timestamp="1597510716450">
+    <state x="0" y="0" width="1684" height="1053" key="SettingsEditor" timestamp="1597542652933">
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
-    <state x="0" y="0" width="1684" height="1053" key="SettingsEditor/0.0.1920.1053@0.0.1920.1053" timestamp="1597510716450" />
+    <state x="0" y="0" width="1684" height="1053" key="SettingsEditor/0.0.1920.1053@0.0.1920.1053" timestamp="1597542652933" />
     <state x="485" y="72" width="1098" height="917" key="StructurePopup" timestamp="1597364924607">
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
@@ -307,9 +300,9 @@
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
     <state x="371" y="228" key="run.anything.popup/0.0.1920.1053@0.0.1920.1053" timestamp="1597541366119" />
-    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup" timestamp="1597541492126">
+    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup" timestamp="1597551817547">
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
-    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup/0.0.1920.1053@0.0.1920.1053" timestamp="1597541492126" />
+    <state x="369" y="0" width="1177" height="1976" key="search.everywhere.popup/0.0.1920.1053@0.0.1920.1053" timestamp="1597551817547" />
   </component>
 </project>

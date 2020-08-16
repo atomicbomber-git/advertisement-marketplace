@@ -1,4 +1,4 @@
-@extends("layouts.app-admin")
+@extends("layouts.app-guest")
 
 @section("content")
     <div class="box"
