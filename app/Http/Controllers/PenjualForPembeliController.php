@@ -22,13 +22,10 @@ class PenjualForPembeliController extends Controller
      * @param Penjual $penjual
      * @return Response
      */
-    public function show(Penjual $penjual)
+    public function show($penjual)
     {
         return $this->responseFactory->view("penjual-for-pembeli.show", [
-            "penjual" => $penjual,
-            "produks" => $penjual
-                ->produks()
-                ->orderBy("created_at")
+            "penjual_id" => $penjual
         ]);
     }
 }

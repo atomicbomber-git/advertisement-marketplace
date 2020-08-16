@@ -101,7 +101,7 @@
                         <span class="icon">
                             <i class="fas fa-exclamation-triangle  "></i>
                         </span>
-                            Anda hanya dapat melakukan aktivitas jual beli jika akun anda <strong> telah
+                            Anda hanya dapat melakukan aktivitas jual beli jika akun Anda adalah akun <strong> pelanggan </strong> dan akun Anda <strong> telah
                                 terverifikasi. </strong>
                         </div>
                     </article>

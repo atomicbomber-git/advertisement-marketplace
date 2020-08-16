@@ -72,7 +72,7 @@ class ProdukForPelangganShow extends Component
 
     public function getInvoiceProperty()
     {
-        if ($this->user === null) {
+        if ($this->user === null || $this->user->pelanggan === null) {
             return null;
         }
 

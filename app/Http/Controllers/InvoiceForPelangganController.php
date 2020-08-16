@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Invoice;
+use App\Providers\AuthServiceProvider;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -23,6 +24,8 @@ class InvoiceForPelangganController extends Controller
      */
     public function index($pelanggan)
     {
+        $this->authorize(AuthServiceProvider::MANAGE_OWN_PELANGGAN_INVOICES);
+
         return $this->responseFactory->view("invoice-for-pelanggan.index", [
             "pelanggan_id" => $pelanggan
         ]);
