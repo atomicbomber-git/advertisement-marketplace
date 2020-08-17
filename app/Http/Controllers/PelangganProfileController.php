@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Constants\MessageState;
 use App\Constants\SessionHelper;
 use App\Pelanggan;
+use App\Providers\AuthServiceProvider;
 use App\User;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
@@ -31,6 +32,8 @@ class PelangganProfileController extends Controller
      */
     public function edit(Pelanggan $pelanggan)
     {
+        $this->authorize(AuthServiceProvider::MANAGE_OWN_PELANGGAN_PROFILE);
+
         return $this->responseFactory->view("pelanggan-profile.edit", [
             "pelanggan" => $pelanggan->load("user")
         ]);
@@ -45,6 +48,8 @@ class PelangganProfileController extends Controller
      */
     public function update(Request $request, Pelanggan $pelanggan)
     {
+        $this->authorize(AuthServiceProvider::MANAGE_OWN_PELANGGAN_PROFILE);
+
         $data = $request->validate([
             "name" => ["required", "string"],
             "username" => ["required", "alpha_dash", Rule::unique(User::class)->ignoreModel($pelanggan->user)],

@@ -64,19 +64,6 @@ class InvoiceForPelangganController extends Controller
      */
     public function show(Pelanggan $pelanggan, Invoice $invoice)
     {
-//        return $invoice
-//            ->items()
-//            ->when(true, function (Builder $builder) use($invoice) {
-//                if ($invoice->status === InvoiceStatus::DRAFT) {
-//                    $builder->select(DB::raw("SUM(harga * kuantitas) AS aggregate"));
-//                    return;
-//                }
-//
-//                $builder
-//                    ->join("produk", "produk.id", "=", "produk_id")
-//                    ->select(DB::raw("SUM(produk.harga * kuantitas) AS agrregate"));
-//            })->value("aggregate");
-
         return $this->responseFactory->view("invoice-for-pelanggan.show", [
             "pelanggan" => $pelanggan,
             "invoice" => $invoice,

@@ -48,37 +48,16 @@
                     </td>
                     <td class="has-text-centered">
 
-                    @can(\App\Providers\AuthServiceProvider::EDIT_PELANGGAN_INVOICE, $invoice)
-                            <a href="{{ route("pelanggan.invoice-for-pelanggan.edit", [$invoice->pelanggan_id, $invoice]) }}"
-                               class="button is-info is-small"
-                            >
-                                <span class="icon is-small">
-                                    <i class="fas fa-pencil-alt"></i>
-                                </span>
-                                <span>
-                                    Edit / Checkout
-                                </span>
-                            </a>
-
-                            <button
-                                    x-data="{}"
-                                    x-on:click="
-                                        confirmDialog()
-                                            .then(response => {
-                                                if (!response.value) { return }
-                                                window.livewire.emit('cancel', {{ $invoice->id }})
-                                            })
-                                    "
-                                    class="button is-danger is-small"
-                            >
-                                <span class="icon is-small">
-                                    <i class="fas fa-trash"></i>
-                                </span>
-                                <span>
-                                    Batalkan
-                                </span>
-                            </button>
-                        @endcan
+                        <a href="{{ route("penjual.invoice-for-penjual.show", [$invoice->pelanggan_id, $invoice]) }}"
+                           class="button is-info is-small"
+                        >
+                            <span class="icon is-small">
+                                <i class="fas fa-list"></i>
+                            </span>
+                            <span>
+                                Lihat
+                            </span>
+                        </a>
                     </td>
                 </tr>
             @endforeach

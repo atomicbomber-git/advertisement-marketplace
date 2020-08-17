@@ -3,7 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceCancellationForPelangganController;
 use App\Http\Controllers\InvoiceForPelangganController;
-use App\Http\Controllers\InvoiceForPenjual;
+use App\Http\Controllers\InvoiceForPenjualController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PelangganProfileController;
 use App\Http\Controllers\PelangganRegistrasiController;
@@ -80,8 +80,10 @@ Route::resource("penjual-for-pembeli", class_basename(PenjualForPembeliControlle
 
 Route::resource("pelanggan.invoice-for-pelanggan", class_basename(InvoiceForPelangganController::class))
     ->parameter("invoice-for-pelanggan", "invoice")
-    ->only(["index", "edit", "show"]);
+    ->only(["index", "edit", "show"])
+    ->scoped();
 
-Route::resource("penjual.invoice-for-penjual", class_basename(InvoiceForPenjual::class))
+Route::resource("penjual.invoice-for-penjual", class_basename(InvoiceForPenjualController::class))
     ->parameter("invoice-for-penjual", "invoice")
-    ->only(["index", "edit", "show"]);
+    ->only(["index", "edit", "show"])
+    ->scoped();
