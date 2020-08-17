@@ -7,68 +7,114 @@
         Ubah atau Checkout
     </h1>
 
-    <table class="table is-striped is-small is-fullwidth is-hoverable">
-        <thead>
+    <dl class="my-5 box">
+        <dt class="has-text-weight-bold"> Penjual </dt>
+        <dd class="mb-3">
+            <a href="{{ route("penjual-for-pembeli.show", $this->invoice->penjual_id) }}">
+                {{ $this->invoice->penjual->nama  }}
+            </a>
+        </dd>
+
+        <dt class="has-text-weight-bold"> Waktu Pemesanan </dt>
+        <dd> {{ $this->invoice->created_at }} </dd>
+    </dl>
+
+    <div class="table-container box my-5">
+        <h2 class="title is-3"> Daftar Produk  </h2>
+
+        <table class="table is-striped is-small is-fullwidth is-hoverable">
+            <thead>
             <tr>
                 <th> # </th>
                 <th> Produk </th>
                 <th class="has-text-right"> Harga Satuan </th>
                 <th class="has-text-right"> Kuantitas </th>
                 <th class="has-text-right"> Subtotal </th>
-                <th> Kendali </th>
+                <th class="has-text-centered"> Kendali </th>
             </tr>
-        </thead>
+            </thead>
 
-        <tbody>
-            @foreach ($invoiceItemsData as $index => $invoiceItemData)
-                <td> {{ $loop->iteration }} </td>
-                <td>
-                    <a href="{{ route("penjual.produk-for-pelanggan.show", [$invoiceItemData["produk"]["penjual_id"], $invoiceItemData["produk"]["kode"]])  }}">
-                        {{ $invoiceItemData["produk"]["nama"] }}
-                    </a>
-                </td>
-                <td class="has-text-right">
-                    {{ \Facades\App\Support\Formatter::currency($invoiceItemData["produk"]["harga"]) }}
-                </td>
-                <td>
-                    <div class="field has-addons has-addons-right">
-                        <p class="control">
-                            <button
-                                    class="button is-info is-small"
-                            >
+            <tbody>
+            @foreach ($invoiceItemsData as $invoiceItemId => $invoiceItemData)
+                <tr>
+                    <td> {{ $loop->iteration }} </td>
+                    <td>
+                        <a href="{{ route("penjual.produk-for-pelanggan.show", [$invoiceItemData["produk"]["penjual_id"], $invoiceItemData["produk"]["kode"]])  }}">
+                            {{ $invoiceItemData["produk"]["nama"] }}
+                        </a>
+                    </td>
+                    <td class="has-text-right">
+                        {{ \Facades\App\Support\Formatter::currency($invoiceItemData["produk"]["harga"]) }}
+                    </td>
+                    <td>
+                        <div class="field has-addons has-addons-right">
+                            <p class="control">
+                                <button
+                                        class="button is-info is-small"
+                                        wire:click="decrementProductQuantity({{ $invoiceItemId }})"
+                                >
                                     <span class="icon">
                                         <i class="fas fa-minus"></i>
                                     </span>
-                            </button>
-                        </p>
-                        <p class="control">
-                            <label for="kuantitas">
-                                <input
-                                        id="kuantitas"
-                                        wire:model="invoiceItemsData.{{ $index }}.kuantitas"
-                                        class="input is-small has-text-right"
-                                        type="number"
-                                        step="1"
-                                        min="0"
-                                        placeholder="Jumlah pembelian"/>
-                            </label>
-                        </p>
-                        <p class="control">
-                            <button
-                                    class="button is-info is-small"
-                            >
+                                </button>
+                            </p>
+                            <p class="control">
+                                <label for="kuantitas">
+                                    <input
+                                            id="kuantitas"
+                                            wire:model="invoiceItemsData.{{ $invoiceItemId }}.kuantitas"
+                                            class="input is-small has-text-right"
+                                            type="number"
+                                            step="1"
+                                            min="0"
+                                            placeholder="Jumlah pembelian"/>
+                                </label>
+                            </p>
+                            <p class="control">
+                                <button
+                                        class="button is-info is-small"
+                                        wire:click="incrementProductQuantity({{ $invoiceItemId }})"
+                                >
                                     <span class="icon">
                                         <i class="fas fa-plus"></i>
                                     </span>
-                            </button>
-                        </p>
-                    </div>
-                </td>
-                <td class="has-text-right">
-                    {{ \Facades\App\Support\Formatter::currency($invoiceItemData["kuantitas"] * $invoiceItemData["produk"]["harga"]) }}
-                </td>
-                <td> {{ $loop->iteration }} </td>
+                                </button>
+                            </p>
+                        </div>
+                    </td>
+                    <td class="has-text-right">
+                        {{ \Facades\App\Support\Formatter::currency($invoiceItemData["kuantitas"] * $invoiceItemData["produk"]["harga"]) }}
+                    </td>
+                    <td class="has-text-centered">
+                        <button
+                           class="button is-primary is-small is-danger"
+                        >
+                            <span class="icon is-small">
+                                <i class="fas fa-trash"></i>
+                            </span>
+                            <span>
+                                Hapus
+                            </span>
+                        </button>
+
+                    </td>
+                </tr>
             @endforeach
-        </tbody>
-    </table>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="has-text-right has-text-weight-bold has-text-info">
+                        {{ \Facades\App\Support\Formatter::currency($this->totalPrice) }}
+                    </td>
+                    <td></td>
+                </tr>
+            </tfoot>
+
+        </table>
+    </div>
 </div>

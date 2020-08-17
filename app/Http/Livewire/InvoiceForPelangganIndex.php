@@ -24,6 +24,10 @@ class InvoiceForPelangganIndex extends Component
 
     const ALL_STATUS = "ALL";
 
+    protected $listeners = [
+        "cancel" => "cancel",
+    ];
+
     public function mount($pelangganId, Request $request)
     {
         $this->pelangganId = $pelangganId;

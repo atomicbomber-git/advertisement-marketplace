@@ -69,7 +69,7 @@ class InvoiceForPelangganController extends Controller
      * @param Invoice $invoice
      * @return Response
      */
-    public function edit($invoice)
+    public function edit($pelanggan, $invoice)
     {
         return $this->responseFactory->view("invoice-for-pelanggan.edit", [
             "invoice_id" => $invoice

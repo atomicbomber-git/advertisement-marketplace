@@ -25,6 +25,7 @@ class InvoiceForPelangganEdit extends Component
         $this->invoiceItemsData = $this->invoice->items()
             ->with("produk")
             ->get()
+            ->keyBy("id")
             ->toArray();
     }
 
@@ -38,33 +39,64 @@ class InvoiceForPelangganEdit extends Component
         if (Str::is("invoiceItemsData.*.kuantitas", $attributes)) {
             $accessorPath = substr($attributes, strpos($attributes, '.') + 1);
 
-            [$index, $key] = explode(".", $accessorPath);
-            $invoiceItemId = $this->invoiceItemsData[$index]["id"];
-            $currentQuantity = $this->invoiceItemsData[$index][$key];
-
-            try {
-                throw_if(!is_numeric($currentQuantity), "Quantity has to be numeric.");
-                throw_if($currentQuantity < 0, "Quantity can't be negative.");
-
-                InvoiceItem::query()
-                    ->where("id", $invoiceItemId)
-                    ->update(["kuantitas" => $currentQuantity]);
-
-            } catch (\Throwable $ex) {
-                $this->invoiceItemsData = $this->oldInvoiceItemsData;
-            }
+            [$invoiceItemId, $key] = explode(".", $accessorPath);
+            $this->syncProductQuantity($invoiceItemId);
         }
     }
-
 
     public function getInvoiceProperty()
     {
         return Invoice::query()
-            ->findOrFail($this->invoiceId);
+            ->findOrFail($this->invoiceId)
+            ->load("penjual");
+    }
+
+    public function getTotalPriceProperty()
+    {
+        return array_reduce($this->invoiceItemsData, function ($current, $next) {
+            return $current + ($next["kuantitas"] * $next["produk"]["harga"]);
+        }, 0);
     }
 
     public function render()
     {
         return view('livewire.invoice-for-pelanggan-edit');
+    }
+
+    public function incrementProductQuantity($productId)
+    {
+        $this->oldInvoiceItemsData = $this->invoiceItemsData;
+        ++$this->invoiceItemsData[$productId]["kuantitas"];
+
+        $this->syncProductQuantity($productId);
+    }
+
+    public function decrementProductQuantity($productId)
+    {
+        $this->oldInvoiceItemsData = $this->invoiceItemsData;
+        --$this->invoiceItemsData[$productId]["kuantitas"];
+
+        $this->syncProductQuantity($productId);
+    }
+
+    /**
+     * @param $newQuantity
+     * @param $invoiceItemId
+     */
+    public function syncProductQuantity($invoiceItemId): void
+    {
+        $newQuantity = $this->invoiceItemsData[$invoiceItemId]["kuantitas"];
+
+        try {
+            throw_if(!is_numeric($newQuantity), "Quantity has to be numeric.");
+            throw_if($newQuantity < 0, "Quantity can't be negative.");
+
+            InvoiceItem::query()
+                ->where("id", $invoiceItemId)
+                ->update(["kuantitas" => $newQuantity]);
+
+        } catch (\Throwable $ex) {
+            $this->invoiceItemsData = $this->oldInvoiceItemsData;
+        }
     }
 }

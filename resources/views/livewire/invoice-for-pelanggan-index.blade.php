@@ -50,13 +50,21 @@
                                 <span class="icon is-small">
                                     <i class="fas fa-pencil-alt"></i>
                                 </span>
-                                    <span>
+                                <span>
                                     Edit / Checkout
                                 </span>
                             </a>
 
-                            <button wire:click="cancel({{ $invoice->id }})"
-                                        class="button is-danger is-small"
+                            <button
+                                    x-data="{}"
+                                    x-on:click="
+                                        confirmDialog()
+                                            .then(response => {
+                                                if (!response.value) { return }
+                                                window.livewire.emit('cancel', {{ $invoice->id }})
+                                            })
+                                    "
+                                    class="button is-danger is-small"
                                 >
                                 <span class="icon is-small">
                                     <i class="fas fa-trash"></i>
