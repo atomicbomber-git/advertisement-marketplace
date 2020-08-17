@@ -91,9 +91,9 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define(self::EDIT_PELANGGAN_INVOICE, function (User $user, Invoice $invoice) {
             return true
-                && $user->level === UserLevel::PENJUAL
-                && $user->penjual->terverifikasi === 1
-                && $user->penjual->id === $invoice->penjual_id
+                && $user->level === UserLevel::PELANGGAN
+                && $user->pelanggan->terverifikasi === 1
+                && $user->pelanggan->id === $invoice->pelanggan_id
                 && $invoice->status === InvoiceStatus::DRAFT
                 ;
         });

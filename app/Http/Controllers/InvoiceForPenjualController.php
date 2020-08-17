@@ -166,6 +166,7 @@ class InvoiceForPenjualController extends Controller
 
         $invoice->update([
             "status" => InvoiceStatus::PAID,
+            "waktu_pelunasan" => now(),
         ]);
 
         SessionHelper::flashMessage(

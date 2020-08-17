@@ -75,7 +75,15 @@
             </table>
 
             <div class="d:f j-c:f-e">
-                <form method="POST" action="{{ route("penjual.invoice-for-penjual.update", [$invoice->penjual_id, $invoice->id]) }}">
+                <form
+                        x-data="{}"
+                        x-on:submit.prevent="window.confirmDialog().then(resp => {
+                            if (resp.value) {
+                                $event.target.submit()
+                            }
+                        })"
+
+                        method="POST" action="{{ route("penjual.invoice-for-penjual.update", [$invoice->penjual_id, $invoice->id]) }}">
                     @method("PUT")
                     @csrf
 

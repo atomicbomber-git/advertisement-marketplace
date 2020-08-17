@@ -12,14 +12,27 @@
 
         <dl class="my-5 box">
             <dt class="has-text-weight-bold"> Penjual </dt>
-            <dd class="mb-3">
+            <dd class="mb-2">
                 <a href="{{ route("penjual-for-pembeli.show", $invoice->penjual_id) }}">
                     {{ $invoice->penjual->nama  }}
                 </a>
             </dd>
 
             <dt class="has-text-weight-bold"> Waktu Pemesanan </dt>
-            <dd> {{ $invoice->created_at }} </dd>
+            <dd class="mb-2"> {{ $invoice->created_at ?? '-' }} </dd>
+
+            <dt class="has-text-weight-bold"> Waktu Checkout </dt>
+            <dd class="mb-2"> {{ $invoice->waktu_checkout ?? '-' }} </dd>
+
+            <dt class="has-text-weight-bold"> Waktu Pelunasan </dt>
+            <dd class="mb-2"> {{ $invoice->waktu_pelunasan ?? '-' }} </dd>
+
+            <dt class="has-text-weight-bold"> Status </dt>
+            <dd class="mb-2">
+                @include("components.invoice-status", [
+                    "status" => $invoice->status
+                ])
+            </dd>
         </dl>
 
         <div class="table-container box my-5">

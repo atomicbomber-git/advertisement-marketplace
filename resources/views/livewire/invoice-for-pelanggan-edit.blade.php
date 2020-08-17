@@ -15,8 +15,21 @@
             </a>
         </dd>
 
-        <dt class="has-text-weight-bold"> Waktu Pemesanan</dt>
-        <dd> {{ $this->invoice->created_at }} </dd>
+        <dt class="has-text-weight-bold"> Waktu Pemesanan </dt>
+        <dd class="mb-2"> {{ $this->invoice->created_at ?? '-' }} </dd>
+
+        <dt class="has-text-weight-bold"> Waktu Checkout </dt>
+        <dd class="mb-2"> {{ $this->invoice->waktu_checkout ?? '-' }} </dd>
+
+        <dt class="has-text-weight-bold"> Waktu Pelunasan </dt>
+        <dd class="mb-2"> {{ $this->invoice->waktu_pelunasan ?? '-' }} </dd>
+
+        <dt class="has-text-weight-bold"> Status </dt>
+        <dd class="mb-2">
+            @include("components.invoice-status", [
+                "status" => $this->invoice->status
+            ])
+        </dd>
     </dl>
 
     <div class="table-container box my-5">
@@ -150,6 +163,4 @@
             </button>
         </div>
     </div>
-
-
 </div>

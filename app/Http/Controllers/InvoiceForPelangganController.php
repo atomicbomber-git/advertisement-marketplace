@@ -105,7 +105,7 @@ class InvoiceForPelangganController extends Controller
      */
     public function edit($pelanggan, Invoice $invoice)
     {
-        $this->authorize(AuthServiceProvider::FINISH_PENJUAL_INVOICE, $invoice);
+        $this->authorize(AuthServiceProvider::EDIT_PELANGGAN_INVOICE, $invoice);
 
         return $this->responseFactory->view("invoice-for-pelanggan.edit", [
             "invoice_id" => $invoice->id,
