@@ -3,12 +3,13 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceCancellationForPelangganController;
 use App\Http\Controllers\InvoiceForPelangganController;
+use App\Http\Controllers\InvoiceForPenjual;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PelangganProfileController;
 use App\Http\Controllers\PelangganRegistrasiController;
 use App\Http\Controllers\PenjualController;
 use App\Http\Controllers\PenjualForPembeliController;
-use App\Http\Controllers\PenjualProdukForPenjualController;
+use App\Http\Controllers\ProdukForPenjual;
 use App\Http\Controllers\PenjualProfileController;
 use App\Http\Controllers\PenjualRegistrationController;
 use App\Http\Controllers\ProdukForPelanggan;
@@ -61,7 +62,7 @@ Route::resource("pelanggan-profile", class_basename(PelangganProfileController::
     ->only(["edit", "update"])
     ->parameter("pelanggan-profile", "pelanggan");
 
-Route::resource("penjual.produk-for-penjual", class_basename(PenjualProdukForPenjualController::class))
+Route::resource("penjual.produk-for-penjual", class_basename(ProdukForPenjual::class))
     ->parameter("produk-for-penjual", "produk")
     ->shallow();
 
@@ -79,4 +80,8 @@ Route::resource("penjual-for-pembeli", class_basename(PenjualForPembeliControlle
 
 Route::resource("pelanggan.invoice-for-pelanggan", class_basename(InvoiceForPelangganController::class))
     ->parameter("invoice-for-pelanggan", "invoice")
-    ->only(["index", "edit", "update", "show", "destroy"]);
+    ->only(["index", "edit", "show"]);
+
+Route::resource("penjual.invoice-for-penjual", class_basename(InvoiceForPenjual::class))
+    ->parameter("invoice-for-penjual", "invoice")
+    ->only(["index", "edit", "show"]);

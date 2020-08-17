@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\InvoiceStatus;
 use App\Invoice;
+use App\Pelanggan;
 use App\Providers\AuthServiceProvider;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
 
 class InvoiceForPelangganController extends Controller
 {
@@ -58,9 +62,52 @@ class InvoiceForPelangganController extends Controller
      * @param Invoice $invoice
      * @return Response
      */
-    public function show(Invoice $invoice)
+    public function show(Pelanggan $pelanggan, Invoice $invoice)
     {
-        //
+//        return $invoice
+//            ->items()
+//            ->when(true, function (Builder $builder) use($invoice) {
+//                if ($invoice->status === InvoiceStatus::DRAFT) {
+//                    $builder->select(DB::raw("SUM(harga * kuantitas) AS aggregate"));
+//                    return;
+//                }
+//
+//                $builder
+//                    ->join("produk", "produk.id", "=", "produk_id")
+//                    ->select(DB::raw("SUM(produk.harga * kuantitas) AS agrregate"));
+//            })->value("aggregate");
+
+        return $this->responseFactory->view("invoice-for-pelanggan.show", [
+            "pelanggan" => $pelanggan,
+            "invoice" => $invoice,
+            "invoice_items" => $invoice
+                ->items()
+                ->select("*")
+                ->with("produk")
+                ->when($invoice->status === InvoiceStatus::DRAFT, function (Builder $builder) {
+                    $builder
+                        ->join("produk", "produk.id", "=", "produk_id")
+                        ->addSelect(DB::raw("produk.harga * kuantitas AS subtotal"));
+                })
+                ->when($invoice->status !== InvoiceStatus::DRAFT, function (Builder $builder) {
+                    $builder->addSelect(DB::raw("harga * kuantitas AS subtotal"));
+                })
+                ->get(),
+
+            "totalPrice" => $invoice
+                ->items()
+                ->when(true, function (Builder $builder) use($invoice) {
+                    if ($invoice->status !== InvoiceStatus::DRAFT) {
+                        $builder
+                            ->select(DB::raw("SUM(harga * kuantitas) AS aggregate"));
+                    }
+                    else {
+                        $builder
+                            ->join("produk", "produk.id", "=", "produk_id")
+                            ->select(DB::raw("SUM(produk.harga * kuantitas) AS aggregate"));
+                    }
+                })->value("aggregate")
+        ]);
     }
 
     /**
@@ -69,10 +116,12 @@ class InvoiceForPelangganController extends Controller
      * @param Invoice $invoice
      * @return Response
      */
-    public function edit($pelanggan, $invoice)
+    public function edit($pelanggan, Invoice $invoice)
     {
+        $this->authorize(AuthServiceProvider::EDIT_PELANGGAN_INVOICE, $invoice);
+
         return $this->responseFactory->view("invoice-for-pelanggan.edit", [
-            "invoice_id" => $invoice
+            "invoice_id" => $invoice->id,
         ]);
     }
 

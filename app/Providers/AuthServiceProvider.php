@@ -17,8 +17,9 @@ class AuthServiceProvider extends ServiceProvider
     const MANAGE_ANY_PELANGGAN = "manage-any-pelanggan";
     const MANAGE_OWN_PENJUAL_PROFILE = "manage-own-penjual-profile";
     const MANAGE_OWN_PELANGGAN_PROFILE = "manage-own-pelanggan-profile";
-    const MANAGE_OWN_PELANGGAN_INVOICES = "manage-own-invoices";
+    const MANAGE_OWN_PELANGGAN_INVOICES = "manage-own-pelanggan-invoices";
     const MANAGE_OWN_PRODUK = "manage-own-produk";
+    const MANAGE_OWN_PENJUAL_INVOICES = "manage-own-penjual-invoices";
     const CREATE_PELANGGAN_INVOICE = "create-pelanggan-invoice";
     const EDIT_PELANGGAN_INVOICE = "edit-pelanggan-invoice";
     const REGISTER_ACCOUNT = "register-account";
@@ -60,6 +61,13 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define(self::MANAGE_OWN_PELANGGAN_INVOICES, function (User $user) {
             return $user->level === UserLevel::PELANGGAN
                 && $user->pelanggan->terverifikasi === 1;
+        });
+
+        Gate::define(self::MANAGE_OWN_PENJUAL_INVOICES, function (User $user) {
+            return true
+                && $user->level === UserLevel::PENJUAL
+                && $user->penjual->terverifikasi === 1
+                ;
         });
 
         Gate::define(self::MANAGE_OWN_PRODUK, function (User $user) {

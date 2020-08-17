@@ -16,7 +16,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
-class PenjualProdukForPenjualController extends Controller
+class ProdukForPenjual extends Controller
 {
     private ResponseFactory $responseFactory;
 

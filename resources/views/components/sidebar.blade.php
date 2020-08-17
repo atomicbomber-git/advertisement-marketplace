@@ -1,4 +1,14 @@
 <aside class="menu column is-one-fifth">
+    <p class="title is-5 is-uppercase">
+        @if(auth()->user()->level === \App\Constants\UserLevel::PENJUAL)
+            {{ auth()->user()->penjual->nama }}
+        @else
+            {{ auth()->user()->name  }}
+        @endif
+    </p>
+
+    <hr>
+
     <p class="menu-label">
         Menu
     </p>
@@ -24,6 +34,15 @@
                 <a
                         href="{{ route("pelanggan.invoice-for-pelanggan.index", auth()->user()->pelanggan) }}"
                         class="{{ \Illuminate\Support\Facades\Route::is("pelanggan.invoice-for-pelanggan.*") ? "is-active" : "" }}"
+                >
+                    Invoice
+                </a>
+            @endcan
+
+            @can(\App\Providers\AuthServiceProvider::MANAGE_OWN_PENJUAL_INVOICES)
+                <a
+                        href="{{ route("penjual.invoice-for-penjual.index", auth()->user()->penjual) }}"
+                        class="{{ \Illuminate\Support\Facades\Route::is("penjual.invoice-for-penjual.*") ? "is-active" : "" }}"
                 >
                     Invoice
                 </a>

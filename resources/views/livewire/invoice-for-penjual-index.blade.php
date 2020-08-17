@@ -25,7 +25,7 @@
                 <th> Waktu Pembuatan </th>
                 <th> Waktu Checkout </th>
                 <th> Waktu Pelunasan </th>
-                <th> Penjual </th>
+                <th> Pelanggan </th>
                 <th> Status </th>
                 <th class="has-text-centered">
                     Kendali
@@ -40,25 +40,15 @@
                     <td> {{ $invoice->created_at }} </td>
                     <td> {{ $invoice->waktu_checkout ?? '-' }} </td>
                     <td> {{ $invoice->waktu_pelunasan ?? '-' }} </td>
-                    <td> {{ $invoice->penjual->nama }} </td>
+                    <td> {{ $invoice->pelanggan->user->name }} </td>
                     <td>
                         @include('components.invoice-status', [
                             "status" => $invoice->status,
                         ])
                     </td>
                     <td class="has-text-centered">
-                        <a href="{{ route("pelanggan.invoice-for-pelanggan.show", [$invoice->pelanggan_id, $invoice->id]) }}"
-                           class="button is-info is-small"
-                        >
-                                <span class="icon is-small">
-                                    <i class="fas fa-list-alt"></i>
-                                </span>
-                            <span>
-                                Lihat
-                            </span>
-                        </a>
 
-                        @can(\App\Providers\AuthServiceProvider::EDIT_PELANGGAN_INVOICE, $invoice)
+                    @can(\App\Providers\AuthServiceProvider::EDIT_PELANGGAN_INVOICE, $invoice)
                             <a href="{{ route("pelanggan.invoice-for-pelanggan.edit", [$invoice->pelanggan_id, $invoice]) }}"
                                class="button is-info is-small"
                             >
@@ -80,11 +70,11 @@
                                             })
                                     "
                                     class="button is-danger is-small"
-                                >
+                            >
                                 <span class="icon is-small">
                                     <i class="fas fa-trash"></i>
                                 </span>
-                                    <span>
+                                <span>
                                     Batalkan
                                 </span>
                             </button>

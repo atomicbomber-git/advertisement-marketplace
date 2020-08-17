@@ -5,19 +5,19 @@ namespace App\Http\Livewire;
 use App\Constants\InvoiceStatus;
 use App\Constants\MessageState;
 use App\Constants\SessionHelper;
+use App\Http\Livewire\Traits\WithCustomPagination;
 use App\Invoice;
 use App\Pelanggan;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 /**
  * @property Pelanggan pelanggan
  */
 class InvoiceForPelangganIndex extends Component
 {
-    use WithPagination;
+    use WithCustomPagination;
 
     public $pelangganId;
     public $status;

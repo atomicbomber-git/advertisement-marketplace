@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Constants\InvoiceStatus;
 use App\Constants\MessageState;
 use App\Constants\SessionHelper;
 use App\Invoice;
@@ -23,6 +24,7 @@ class InvoiceForPelangganEdit extends Component
 
     protected $listeners = [
         "deleteInvoiceItem" => "deleteInvoiceItem",
+        "checkoutInvoice" => "checkoutInvoice",
     ];
 
     public function mount(int $invoiceId)
@@ -67,12 +69,6 @@ class InvoiceForPelangganEdit extends Component
         return array_reduce($this->invoiceItemsData, function ($current, $next) {
             return $current + ($next["kuantitas"] * $next["produk"]["harga"]);
         }, 0);
-    }
-
-    public function render()
-    {
-        $this->loadInvoiceItemsData();
-        return view('livewire.invoice-for-pelanggan-edit');
     }
 
     public function deleteInvoiceItem($invoiceItemId)
@@ -151,5 +147,46 @@ class InvoiceForPelangganEdit extends Component
         } catch (\Throwable $ex) {
             $this->invoiceItemsData = $this->oldInvoiceItemsData;
         }
+    }
+
+    public function checkoutInvoice()
+    {
+        try {
+            DB::beginTransaction();
+
+            $this->invoice->update([
+                "status" => InvoiceStatus::UNPAID,
+                "waktu_checkout" => now(),
+            ]);
+
+            $this->invoice->items()
+                ->join("produk", "produk.id", "=", "invoice_item.produk_id")
+                ->update([
+                    "invoice_item.harga" => DB::raw("produk.harga"),
+                ]);
+
+            $this->redirectRoute("pelanggan.invoice-for-pelanggan.show", [
+                $this->invoice->pelanggan_id,
+                $this->invoice->id,
+            ]);
+
+            DB::commit();
+
+            SessionHelper::flashMessage(
+                __("messages.update.success"),
+                MessageState::STATE_SUCCESS
+            );
+        } catch (\Throwable $exception) {
+            SessionHelper::flashMessage(
+                __("messages.update.failure"),
+                MessageState::STATE_DANGER
+            );
+        }
+    }
+
+    public function render()
+    {
+        $this->loadInvoiceItemsData();
+        return view('livewire.invoice-for-pelanggan-edit');
     }
 }

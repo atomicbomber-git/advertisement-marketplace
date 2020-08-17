@@ -22,6 +22,11 @@ class Penjual extends Model
         return $this->hasMany(Produk::class);
     }
 
+    public function invoices(): HasMany
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
     public function scopeTerverifikasi(Builder $builder)
     {
         $builder->where("terverifikasi", 1);

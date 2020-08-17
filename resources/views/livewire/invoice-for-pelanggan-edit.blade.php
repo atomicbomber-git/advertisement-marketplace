@@ -8,31 +8,31 @@
     </h1>
 
     <dl class="my-5 box">
-        <dt class="has-text-weight-bold"> Penjual </dt>
+        <dt class="has-text-weight-bold"> Penjual</dt>
         <dd class="mb-3">
             <a href="{{ route("penjual-for-pembeli.show", $this->invoice->penjual_id) }}">
                 {{ $this->invoice->penjual->nama  }}
             </a>
         </dd>
 
-        <dt class="has-text-weight-bold"> Waktu Pemesanan </dt>
+        <dt class="has-text-weight-bold"> Waktu Pemesanan</dt>
         <dd> {{ $this->invoice->created_at }} </dd>
     </dl>
 
     <div class="table-container box my-5">
-        <h2 class="title is-3"> Daftar Produk  </h2>
+        <h2 class="title is-3"> Daftar Produk </h2>
 
         @include("components.messages")
 
         <table class="table is-striped is-small is-fullwidth is-hoverable">
             <thead>
             <tr>
-                <th> # </th>
-                <th> Produk </th>
-                <th class="has-text-right"> Harga Satuan </th>
-                <th class="has-text-right"> Kuantitas </th>
-                <th class="has-text-right"> Subtotal </th>
-                <th class="has-text-centered"> Kendali </th>
+                <th> #</th>
+                <th> Produk</th>
+                <th class="has-text-right"> Harga Satuan</th>
+                <th class="has-text-right"> Kuantitas</th>
+                <th class="has-text-right"> Subtotal</th>
+                <th class="has-text-centered"> Kendali</th>
             </tr>
             </thead>
 
@@ -69,7 +69,8 @@
                                             type="number"
                                             step="1"
                                             min="0"
-                                            placeholder="Jumlah pembelian"/>
+                                            placeholder="Jumlah pembelian"
+                                    />
                                 </label>
                             </p>
                             <p class="control">
@@ -100,7 +101,7 @@
                                         })
                                 "
 
-                           class="button is-primary is-small is-danger"
+                                class="button is-primary is-small is-danger"
                         >
                             <span class="icon is-small">
                                 <i class="fas fa-trash"></i>
@@ -116,18 +117,39 @@
             </tbody>
 
             <tfoot>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="has-text-right has-text-weight-bold has-text-info">
-                        {{ \Facades\App\Support\Formatter::currency($this->totalPrice) }}
-                    </td>
-                    <td></td>
-                </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="has-text-right has-text-weight-bold has-text-info">
+                    {{ \Facades\App\Support\Formatter::currency($this->totalPrice) }}
+                </td>
+                <td></td>
+            </tr>
             </tfoot>
-
         </table>
+
+        <div class="d:f j-c:f-e">
+            <button
+                    x-data="{}"
+                    x-on:click="window.confirmDialog().then(response => {
+                        if (!response.value) {
+                            return
+                        }
+                        window.livewire.emit('checkoutInvoice')
+                    })"
+                    class="button is-info"
+            >
+                <span class="icon is-small">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span>
+                    Check Out
+                </span>
+            </button>
+        </div>
     </div>
+
+
 </div>

@@ -6,8 +6,12 @@ namespace App\Support;
 
 class Formatter
 {
-    public function currency(float $value): string
+    public function currency($value): string
     {
+        if ($value === null) {
+            return "-";
+        }
+
         return "Rp. " . number_format($value);
     }
 
