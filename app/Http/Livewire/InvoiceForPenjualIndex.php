@@ -20,6 +20,10 @@ class InvoiceForPenjualIndex extends Component
     public $penjualId;
     public $status;
 
+    protected $updatesQueryString = [
+        "status" => ["except" => self::ALL_STATUS],
+    ];
+
     public function mount($penjualId, Request $request)
     {
         $this->penjualId = $penjualId;

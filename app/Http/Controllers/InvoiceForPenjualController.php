@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Constants\InvoiceStatus;
+use App\Constants\MessageState;
+use App\Constants\SessionHelper;
 use App\Invoice;
 use App\Penjual;
 use App\Providers\AuthServiceProvider;
@@ -113,7 +115,41 @@ class InvoiceForPenjualController extends Controller
      */
     public function edit(Penjual $penjual, Invoice $invoice)
     {
-        //
+        $this->authorize(AuthServiceProvider::FINISH_PENJUAL_INVOICE, $invoice);
+
+        return $this->responseFactory->view("invoice-for-penjual.edit",
+            [
+                "penjual" => $penjual,
+                "invoice" => $invoice,
+                "invoice_items" => $invoice
+                    ->items()
+                    ->select("*")
+                    ->with("produk")
+                    ->when($invoice->status === InvoiceStatus::DRAFT, function (Builder $builder) {
+                        $builder
+                            ->join("produk", "produk.id", "=", "produk_id")
+                            ->addSelect(DB::raw("produk.harga * kuantitas AS subtotal"));
+                    })
+                    ->when($invoice->status !== InvoiceStatus::DRAFT, function (Builder $builder) {
+                        $builder->addSelect(DB::raw("harga * kuantitas AS subtotal"));
+                    })
+                    ->get(),
+
+                "totalPrice" => $invoice
+                    ->items()
+                    ->when(true, function (Builder $builder) use($invoice) {
+                        if ($invoice->status !== InvoiceStatus::DRAFT) {
+                            $builder
+                                ->select(DB::raw("SUM(harga * kuantitas) AS aggregate"));
+                        }
+                        else {
+                            $builder
+                                ->join("produk", "produk.id", "=", "produk_id")
+                                ->select(DB::raw("SUM(produk.harga * kuantitas) AS aggregate"));
+                        }
+                    })->value("aggregate")
+            ]
+        );
     }
 
     /**
@@ -122,11 +158,25 @@ class InvoiceForPenjualController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Penjual  $penjual
      * @param  \App\Invoice  $invoice
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Penjual $penjual, Invoice $invoice)
+    public function update(Penjual $penjual, Invoice $invoice)
     {
-        //
+        $this->authorize(AuthServiceProvider::FINISH_PENJUAL_INVOICE, $invoice);
+
+        $invoice->update([
+            "status" => InvoiceStatus::PAID,
+        ]);
+
+        SessionHelper::flashMessage(
+            __("messages.update.success"),
+            MessageState::STATE_SUCCESS
+        );
+
+        return $this->responseFactory->redirectToRoute("penjual.invoice-for-penjual.index", [
+            "penjual" => $invoice->penjual_id,
+            "status" => InvoiceStatus::PAID,
+        ]);
     }
 
     /**

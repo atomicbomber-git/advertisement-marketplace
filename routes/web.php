@@ -85,5 +85,5 @@ Route::resource("pelanggan.invoice-for-pelanggan", class_basename(InvoiceForPela
 
 Route::resource("penjual.invoice-for-penjual", class_basename(InvoiceForPenjualController::class))
     ->parameter("invoice-for-penjual", "invoice")
-    ->only(["index", "edit", "show"])
+    ->only(["index", "edit", "update", "show"])
     ->scoped();

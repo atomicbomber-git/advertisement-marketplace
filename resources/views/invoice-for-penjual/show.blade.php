@@ -7,7 +7,7 @@
                 Invoice
             </a>
             /
-            Ubah atau Checkout
+            Lihat
         </h1>
 
         <dl class="my-5 box">

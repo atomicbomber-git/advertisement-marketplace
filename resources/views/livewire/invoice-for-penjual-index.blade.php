@@ -47,6 +47,19 @@
                         ])
                     </td>
                     <td class="has-text-centered">
+                        @can(\App\Providers\AuthServiceProvider::FINISH_PENJUAL_INVOICE, $invoice)
+                            <a href="{{ route("penjual.invoice-for-penjual.edit", [$invoice->pelanggan_id, $invoice]) }}"
+                               class="button is-info is-small"
+                            >
+                                <span class="icon is-small">
+                                    <i class="fas fa-check"></i>
+                                </span>
+                                    <span>
+                                    Selesaikan
+                                </span>
+                            </a>
+                        @endcan
+
 
                         <a href="{{ route("penjual.invoice-for-penjual.show", [$invoice->pelanggan_id, $invoice]) }}"
                            class="button is-info is-small"

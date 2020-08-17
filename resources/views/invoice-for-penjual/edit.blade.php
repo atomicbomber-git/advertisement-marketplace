@@ -3,22 +3,22 @@
 @section("content")
     <div>
         <h1 class="title is-1">
-            <a href="{{ route("pelanggan.invoice-for-pelanggan.index", $invoice->pelanggan_id) }}">
+            <a href="{{ route("penjual.invoice-for-penjual.index", $invoice->penjual_id) }}">
                 Invoice
             </a>
             /
-            Lihat
+            Selesaikan
         </h1>
 
         <dl class="my-5 box">
-            <dt class="has-text-weight-bold"> Penjual</dt>
+            <dt class="has-text-weight-bold"> Penjual </dt>
             <dd class="mb-3">
                 <a href="{{ route("penjual-for-pembeli.show", $invoice->penjual_id) }}">
                     {{ $invoice->penjual->nama  }}
                 </a>
             </dd>
 
-            <dt class="has-text-weight-bold"> Waktu Pemesanan</dt>
+            <dt class="has-text-weight-bold"> Waktu Pemesanan </dt>
             <dd> {{ $invoice->created_at }} </dd>
         </dl>
 
@@ -30,11 +30,11 @@
             <table class="table is-striped is-small is-fullwidth is-hoverable">
                 <thead>
                 <tr>
-                    <th> #</th>
-                    <th> Produk</th>
-                    <th class="has-text-right"> Harga Satuan</th>
-                    <th class="has-text-right"> Kuantitas</th>
-                    <th class="has-text-right"> Subtotal</th>
+                    <th> # </th>
+                    <th> Produk </th>
+                    <th class="has-text-right"> Harga Satuan </th>
+                    <th class="has-text-right"> Kuantitas </th>
+                    <th class="has-text-right"> Subtotal </th>
                 </tr>
                 </thead>
 
@@ -73,7 +73,22 @@
                 </tr>
                 </tfoot>
             </table>
+
+            <div class="d:f j-c:f-e">
+                <form method="POST" action="{{ route("penjual.invoice-for-penjual.update", [$invoice->penjual_id, $invoice->id]) }}">
+                    @method("PUT")
+                    @csrf
+
+                    <button class="button is-info">
+                    <span class="icon is-small">
+                        <i class="fas fa-check"></i>
+                    </span>
+                        <span>
+                        Selesaikan
+                    </span>
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
-
 @endsection

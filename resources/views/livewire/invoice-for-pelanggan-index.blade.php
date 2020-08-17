@@ -58,7 +58,7 @@
                             </span>
                         </a>
 
-                        @can(\App\Providers\AuthServiceProvider::EDIT_PELANGGAN_INVOICE, $invoice)
+                        @can(\App\Providers\AuthServiceProvider::FINISH_PENJUAL_INVOICE, $invoice)
                             <a href="{{ route("pelanggan.invoice-for-pelanggan.edit", [$invoice->pelanggan_id, $invoice]) }}"
                                class="button is-info is-small"
                             >
