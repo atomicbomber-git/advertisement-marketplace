@@ -154,7 +154,7 @@
             </div>
 
             <div class="has-text-right">
-                <button class="button is-primary">
+                <button class="button is-info">
                     Ubah
                 </button>
             </div>

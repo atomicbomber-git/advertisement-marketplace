@@ -5,7 +5,7 @@
 
     <div class="my-2 has-text-right">
         <a href="{{ route("penjual.produk-for-penjual.create", $this->penjual) }}"
-           class="button is-primary"
+           class="button is-info"
         >
             <span> Tambah </span>
             <span class="icon is-small">
@@ -71,7 +71,7 @@
                         </button>
 
                         <a href="{{ route("produk-for-penjual.edit", $produk) }}"
-                           class="button is-primary is-small"
+                           class="button is-info is-small"
                         >
                             <span class="icon is-small">
                                 <i class="fas fa-pencil-alt"></i>

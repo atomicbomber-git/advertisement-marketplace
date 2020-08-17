@@ -114,7 +114,7 @@
                                         })
                                 "
 
-                                class="button is-primary is-small is-danger"
+                                class="button is-info is-small is-danger"
                         >
                             <span class="icon is-small">
                                 <i class="fas fa-trash"></i>

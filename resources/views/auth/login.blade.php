@@ -59,7 +59,7 @@
             </div>
 
             <div class="d:f j-c:f-e">
-                <button class="button is-primary">
+                <button class="button is-info">
                     @lang("app.login")
                 </button>
             </div>

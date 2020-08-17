@@ -39,14 +39,14 @@
                         <div class="buttons">
                             @can(\App\Providers\AuthServiceProvider::REGISTER_ACCOUNT)
                                 <a href="{{ route("pelanggan-registrasi.create") }}"
-                                   class="button is-small is-primary"
+                                   class="button is-small is-info"
                                 >
                                     <strong>
                                         Daftar Pelanggan
                                     </strong>
                                 </a>
                                 <a href="{{ route("penjual-registrasi.create") }}"
-                                   class="button is-small is-primary"
+                                   class="button is-small is-info"
                                 >
                                     <strong>
                                         Daftar Penjual
