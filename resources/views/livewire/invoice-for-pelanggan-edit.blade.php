@@ -22,6 +22,8 @@
     <div class="table-container box my-5">
         <h2 class="title is-3"> Daftar Produk  </h2>
 
+        @include("components.messages")
+
         <table class="table is-striped is-small is-fullwidth is-hoverable">
             <thead>
             <tr>
@@ -87,6 +89,17 @@
                     </td>
                     <td class="has-text-centered">
                         <button
+                                x-data="{}"
+                                x-on:click="
+                                    window.confirmDialog()
+                                        .then(resp => {
+                                            if (!resp.value) {
+                                                return
+                                            }
+                                            window.livewire.emit('deleteInvoiceItem', {{ $invoiceItemId }})
+                                        })
+                                "
+
                            class="button is-primary is-small is-danger"
                         >
                             <span class="icon is-small">

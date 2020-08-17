@@ -2,9 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Constants\MessageState;
+use App\Constants\SessionHelper;
 use App\Invoice;
 use App\InvoiceItem;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -18,10 +21,18 @@ class InvoiceForPelangganEdit extends Component
     public array $invoiceItemsData;
     public $oldInvoiceItemsData;
 
+    protected $listeners = [
+        "deleteInvoiceItem" => "deleteInvoiceItem",
+    ];
+
     public function mount(int $invoiceId)
     {
         $this->invoiceId = $invoiceId;
+        $this->loadInvoiceItemsData();
+    }
 
+    public function loadInvoiceItemsData()
+    {
         $this->invoiceItemsData = $this->invoice->items()
             ->with("produk")
             ->get()
@@ -60,7 +71,44 @@ class InvoiceForPelangganEdit extends Component
 
     public function render()
     {
+        $this->loadInvoiceItemsData();
         return view('livewire.invoice-for-pelanggan-edit');
+    }
+
+    public function deleteInvoiceItem($invoiceItemId)
+    {
+        try {
+            DB::beginTransaction();
+
+            InvoiceItem::query()
+                ->where("id", $invoiceItemId)
+                ->delete();
+
+            // Also delete the invoice if we're deleting the only invoice item left
+            if ($this->invoice->items()->count() === 0) {
+
+                // Saving relevant data for redirection after deletion
+                $penjualId = $this->invoice->penjual_id;
+
+                $this->invoice->delete();
+
+                SessionHelper::flashMessage(
+                    __("messages.delete.success"),
+                    MessageState::STATE_SUCCESS,
+                );
+
+                $this->redirectRoute("pelanggan.invoice-for-pelanggan.index", [
+                    $penjualId
+                ]);
+            }
+
+            DB::commit();
+        } catch (\Throwable $exception) {
+            SessionHelper::flashMessage(
+                __("messages.delete.failure"),
+                MessageState::STATE_DANGER,
+            );
+        }
     }
 
     public function incrementProductQuantity($productId)
@@ -90,6 +138,11 @@ class InvoiceForPelangganEdit extends Component
         try {
             throw_if(!is_numeric($newQuantity), "Quantity has to be numeric.");
             throw_if($newQuantity < 0, "Quantity can't be negative.");
+
+            if ($newQuantity === 0) {
+                $this->deleteInvoiceItem($invoiceItemId);
+                return;
+            }
 
             InvoiceItem::query()
                 ->where("id", $invoiceItemId)
