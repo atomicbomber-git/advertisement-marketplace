@@ -48,7 +48,7 @@
                     </td>
                     <td class="has-text-centered">
                         @can(\App\Providers\AuthServiceProvider::FINISH_PENJUAL_INVOICE, $invoice)
-                            <a href="{{ route("penjual.invoice-for-penjual.edit", [$invoice->pelanggan_id, $invoice]) }}"
+                            <a href="{{ route("penjual.invoice-for-penjual.edit", [$invoice->penjual_id, $invoice]) }}"
                                class="button is-info is-small"
                             >
                                 <span class="icon is-small">
@@ -60,8 +60,7 @@
                             </a>
                         @endcan
 
-
-                        <a href="{{ route("penjual.invoice-for-penjual.show", [$invoice->pelanggan_id, $invoice]) }}"
+                        <a href="{{ route("penjual.invoice-for-penjual.show", [$invoice->penjual_id, $invoice]) }}"
                            class="button is-info is-small"
                         >
                             <span class="icon is-small">
