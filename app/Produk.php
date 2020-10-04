@@ -29,6 +29,11 @@ class Produk extends Model implements HasMedia
         return $this->belongsTo(Penjual::class);
     }
 
+    public function kategori_produk(): BelongsTo
+    {
+        return $this->belongsTo(KategoriProduk::class);
+    }
+
     public function registerMediaConversions(Media $media = null): void
     {
         $originalImage = Image::load($this->getFirstMediaPath());

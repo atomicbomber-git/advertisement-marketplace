@@ -48,8 +48,11 @@
                 <a href="{{ route("penjual.produk-for-pelanggan.show", [$produk->penjual_id, $produk->kode]) }}">
                     <div class="card">
                         <div class="card-image">
-                            <figure class="image is-4by3">
+                            <figure class="image is-4by3" style="position: relative">
                                 <img src="{{ route("produk-thumb.show", $produk)  }}" alt="Placeholder image">
+                                <span
+                                        style="position: absolute; top: 10px; right: 10px; z-index: 999"
+                                        class="tag is-danger is-medium"> {{ $produk->kategori_produk->nama }} </span>
                             </figure>
                         </div>
                         <div class="card-content">

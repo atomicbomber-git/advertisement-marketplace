@@ -2,7 +2,9 @@
 
 @section("content")
     <h1 class="title is-1">
-        <a class="has-text-link" href="{{ route("penjual.produk-for-penjual.index", $produk->penjual_id) }}">
+        <a class="has-text-link"
+           href="{{ route("penjual.produk-for-penjual.index", $produk->penjual_id) }}"
+        >
             Produk
         </a>
         / Ubah
@@ -11,8 +13,10 @@
     @include("components.messages")
 
     <div class="box">
-        <form enctype="multipart/form-data" method="POST"
-              action="{{ route("produk-for-penjual.update", $produk) }}">
+        <form enctype="multipart/form-data"
+              method="POST"
+              action="{{ route("produk-for-penjual.update", $produk) }}"
+        >
             @csrf
             @method("PUT")
 
@@ -64,6 +68,30 @@
 
             <div class="field">
                 <label class="label"
+                       for="kategori_produk_id"
+                > Kategori </label>
+                <div class="control @error('kategori_produk_id') is-danger @enderror">
+                    <div class="select">
+                        <select name="kategori_produk_id"
+                                id="kategori_produk_id"
+                        >
+                            @foreach ($kategori_produks as $kategori_produk)
+                                <option value="{{ $kategori_produk->id }}" {{ old("kategori_produk_id", $produk->kategori_produk_id) === $kategori_produk->id ? "selected" : "" }}>
+                                    {{ $kategori_produk->nama }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                @error("kategori_produk_id")
+                <p class="help is-danger">
+                    {{ $message }}
+                </p>
+                @enderror
+            </div>
+
+            <div class="field">
+                <label class="label"
                        for="deskripsi"
                 >Deskripsi</label>
                 <div class="control @error('deskripsi') has-icons-right @enderror">
@@ -110,8 +138,9 @@
             <div class="field">
                 <figure>
                     <img
-                        src="{{ route("produk-thumb.show", $produk)  }}"
-                        alt="Thumbnail of {{ $produk->nama }}">
+                            src="{{ route("produk-thumb.show", $produk)  }}"
+                            alt="Thumbnail of {{ $produk->nama }}"
+                    >
                     <figcaption>
                         Gambar Produk Sekarang
                     </figcaption>
@@ -124,12 +153,16 @@
                 > Gambar Baru </label>
 
                 <div class="file is-fullwidth"
-                     x-data="{ file: null }"
+                     x-data="{ null }"
                 >
                     <label class="file-label">
                         <input
-                            x-on:input="file = $event.target.files[0]"
-                            class="file-input" accept="image/png,image/jpeg,image.jpg" type="file" name="image">
+                                x-on:input="file = $event.target.files[0]"
+                                class="file-input"
+                                accept="image/png,image/jpeg,image.jpg"
+                                type="file"
+                                name="image"
+                        >
                         <span class="file-cta">
                           <span class="file-icon">
                             <i class="fas fa-upload"></i>
@@ -139,7 +172,7 @@
                           </span>
                         </span>
                         <span class="file-name"
-                            x-text="!file ? 'Belum terdapat berkas' : file.name"
+                              x-text="!file ? 'Belum terdapat berkas' : file.name"
                         >
                         </span>
                     </label>

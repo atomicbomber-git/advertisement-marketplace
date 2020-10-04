@@ -2,15 +2,19 @@
 
 @section("content")
     <h1 class="title is-1">
-        <a class="has-text-link" href="{{ route("penjual.produk-for-penjual.index", $penjual) }}">
+        <a class="has-text-link"
+           href="{{ route("penjual.produk-for-penjual.index", $penjual) }}"
+        >
             Produk
         </a>
         / Tambah
     </h1>
 
     <div class="box">
-        <form enctype="multipart/form-data" method="POST"
-              action="{{ route("penjual.produk-for-penjual.store", $penjual) }}">
+        <form enctype="multipart/form-data"
+              method="POST"
+              action="{{ route("penjual.produk-for-penjual.store", $penjual) }}"
+        >
             @csrf
 
             <div class="field">
@@ -56,6 +60,30 @@
                 </div>
                 @error('nama')
                 <p class="help is-danger"> {{ $message }} </p>
+                @enderror
+            </div>
+
+            <div class="field">
+                <label class="label"
+                       for="kategori_produk_id"
+                > Kategori </label>
+                <div class="control @error('kategori_produk_id') is-danger @enderror">
+                    <div class="select">
+                        <select name="kategori_produk_id"
+                                id="kategori_produk_id"
+                        >
+                            @foreach ($kategori_produks as $kategori_produk)
+                                <option value="{{ $kategori_produk->id }}">
+                                    {{ $kategori_produk->nama }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                @error("kategori_produk_id")
+                <p class="help is-danger">
+                    {{ $message }}
+                </p>
                 @enderror
             </div>
 
@@ -114,8 +142,12 @@
                 >
                     <label class="file-label">
                         <input
-                            x-on:input="file = $event.target.files[0]"
-                            class="file-input" accept="image/png,image/jpeg,image.jpg" type="file" name="image">
+                                x-on:input="file = $event.target.files[0]"
+                                class="file-input"
+                                accept="image/png,image/jpeg,image.jpg"
+                                type="file"
+                                name="image"
+                        >
                         <span class="file-cta">
                           <span class="file-icon">
                             <i class="fas fa-upload"></i>
@@ -128,7 +160,7 @@
 
                         </span>
                         <span class="file-name"
-                            x-text="!file ? 'Belum terdapat berkas' : file.name"
+                              x-text="!file ? 'Belum terdapat berkas' : file.name"
                         >
                         </span>
                     </label>

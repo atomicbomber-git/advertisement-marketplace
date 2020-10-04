@@ -24,6 +24,7 @@ class AuthServiceProvider extends ServiceProvider
     const CREATE_PELANGGAN_INVOICE = "create-pelanggan-invoice";
     const EDIT_PELANGGAN_INVOICE = "edit-pelanggan-invoice";
     const REGISTER_ACCOUNT = "register-account";
+    const MANAGE_KATEGORI_PRODUK = "manage-kategori-produk";
 
     /**
      * The policy mappings for the application.
@@ -100,6 +101,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define(self::REGISTER_ACCOUNT, function (?User $user) {
             return $user === null;
+        });
+
+        Gate::define(self::MANAGE_KATEGORI_PRODUK, function (User $user) {
+            return $user->level === UserLevel::SUPER_ADMIN;
         });
     }
 }

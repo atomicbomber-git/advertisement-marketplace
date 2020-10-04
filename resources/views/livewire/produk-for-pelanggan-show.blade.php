@@ -34,6 +34,8 @@
         </div>
 
         <div class="column">
+            <span class="tag is-danger is-medium"> {{ $this->produk->kategori_produk->nama }} </span>
+
             <h1 class="title is-3"> {{ $this->produk->nama }} </h1>
             <p class="subtitle is-3 has-text-danger">
                 {{ \Facades\App\Support\Formatter::currency($this->produk->harga) }}

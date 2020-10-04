@@ -71,6 +71,14 @@
                     Pelanggan
                 </a>
             @endcan
+
+            @can(\App\Providers\AuthServiceProvider::MANAGE_KATEGORI_PRODUK)
+                <a
+                        href="{{ route("kategori-produk.index") }}"
+                        class="{{ \Illuminate\Support\Facades\Route::is("kategori-produk.*") ? "is-active" : "" }}" >
+                    Kategori Produk
+                </a>
+            @endcan
         </li>
     </ul>
 </aside>

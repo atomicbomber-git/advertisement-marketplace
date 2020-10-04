@@ -31,7 +31,8 @@
             <thead>
             <tr>
                 <th> #</th>
-                <th> Nama</th>
+                <th> Nama </th>
+                <th> Kategori </th>
                 <th> Deskripsi</th>
                 <th class="has-text-right"> Harga</th>
                 <th class="has-text-centered"
@@ -46,6 +47,7 @@
                 <tr>
                     <td> {{ $this->produks->firstItem() + $loop->index }} </td>
                     <td> {{ $produk->nama }} </td>
+                    <td> {{ $produk->kategori_produk->nama ?? "-" }} </td>
                     <td> {{ $produk->deskripsi }} </td>
                     <td class="has-text-right"> {{ Facades\App\Support\Formatter::currency($produk->harga) }} </td>
                     <td class="has-text-centered">

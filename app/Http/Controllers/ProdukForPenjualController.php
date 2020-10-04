@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Constants\MessageState;
 use App\Constants\SessionHelper;
+use App\KategoriProduk;
 use App\Penjual;
 use App\Produk;
 use App\Providers\AuthServiceProvider;
@@ -16,7 +17,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
-class ProdukForPenjual extends Controller
+class ProdukForPenjualController extends Controller
 {
     private ResponseFactory $responseFactory;
 
@@ -51,7 +52,10 @@ class ProdukForPenjual extends Controller
         $this->authorize(AuthServiceProvider::MANAGE_OWN_PRODUK);
 
         return $this->responseFactory->view("produk-for-penjual.create", [
-            "penjual" => $penjual
+            "penjual" => $penjual,
+            "kategori_produks" => KategoriProduk::query()
+                ->orderBy("nama")
+                ->get()
         ]);
     }
 
@@ -64,6 +68,7 @@ class ProdukForPenjual extends Controller
     public function store(Request $request, Penjual $penjual)
     {
         $data = $request->validate([
+            "kategori_produk_id" => ["required", Rule::exists(KategoriProduk::class, "id")],
             "kode" => ["required", "string", Rule::unique(Produk::class)],
             "nama" => ["required", "string"],
             "deskripsi" => ["required", "string"],
@@ -97,17 +102,6 @@ class ProdukForPenjual extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param Penjual $penjual
-     * @return Response
-     */
-    public function show(Penjual $penjual)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param Produk $produk
@@ -116,7 +110,10 @@ class ProdukForPenjual extends Controller
     public function edit(Produk $produk)
     {
         return $this->responseFactory->view("produk-for-penjual.edit", [
-            "produk" => $produk
+            "produk" => $produk,
+            "kategori_produks" => KategoriProduk::query()
+                ->orderBy("nama")
+                ->get()
         ]);
     }
 
@@ -130,6 +127,7 @@ class ProdukForPenjual extends Controller
     public function update(Request $request, Produk $produk)
     {
         $data = $request->validate([
+            "kategori_produk_id" => ["required", Rule::exists(KategoriProduk::class, "id")],
             "kode" => ["required", "string", Rule::unique(Produk::class)->ignoreModel($produk)],
             "nama" => ["required", "string"],
             "deskripsi" => ["required", "string"],

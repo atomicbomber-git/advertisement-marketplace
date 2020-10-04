@@ -65,6 +65,7 @@ class PenjualProdukForPenjualIndex extends Component
                 });
             })
             ->orderBy("nama")
+            ->with("kategori_produk")
             ->paginate();
     }
 
