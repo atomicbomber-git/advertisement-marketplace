@@ -1,37 +1,48 @@
 <div>
     <!-- Main container -->
-    <nav class="box level">
-        <!-- Left side -->
-        <div class="level-left">
-            <div class="level-item">
-                <label for="kategori_produk_id"
-                       class="mr-2"
+    <nav class="box columns m:0">
+        <div class="column is-narrow is-flex" style="align-items: center">
+            <label for="kategori_produk_id"
+                   class="label mr-2"
+            >
+                Kategori
+            </label>
+
+            <div class="select">
+                <select wire:model.lazy="kategori_produk_id"
+                        id="kategori_produk_id"
                 >
-                    Kategori
-                </label>
+                    <option value="{{ \App\Http\Livewire\Home::ALL_KATEGORI_PRODUK_ID  }}">
+                        ---- Semua ----
+                    </option>
 
-                <div class="select">
-                    <select wire:model.lazy="kategori_produk_id"
-                            id="kategori_produk_id"
-                    >
-                        <option value="{{ \App\Http\Livewire\Home::ALL_KATEGORI_PRODUK_ID  }}">
-                            ---- Semua ----
+                    @foreach ($kategori_produks as $kategori_produk)
+                        <option value="{{ $kategori_produk->id }}">
+                            {{ $kategori_produk->nama }}
                         </option>
-
-                        @foreach ($kategori_produks as $kategori_produk)
-                            <option value="{{ $kategori_produk->id }}">
-                                {{ $kategori_produk->nama }}
-                            </option>
-                        @endforeach
-                    </select>
-
-
-                </div>
+                    @endforeach
+                </select>
             </div>
         </div>
 
-        <!-- Right side -->
-        <div class="level-right">
+        <div class="column is-flex" style="justify-content: flex-end; align-items: center">
+            <label class="label mr-2"
+                   for="filter"
+            >Filter</label>
+            <div class="control @error('filter') has-icons-right @enderror" style="flex: 1">
+                <input id="filter"
+                       wire:model.debounce.500ms="filter"
+                       class="input @error('filter') is-danger @enderror"
+                       type="text"
+                       placeholder="Filter"
+                       value="{{ old("filter")  }}"
+                >
+                @error('filter')
+                <span class="icon is-small is-right">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </span>
+                @enderror
+            </div>
         </div>
     </nav>
 
@@ -47,38 +58,9 @@
     <div class="columns is-multiline">
         @foreach($produks as $produk)
             <div class="column is-one-quarter">
-                <a href="{{ route("penjual.produk-for-pelanggan.show", [$produk->penjual_id, $produk->kode]) }}">
-                    <div class="card">
-                        <div class="card-image" style="position: relative">
-                            <figure class="image is-4by3">
-                                <img src="{{ route("produk-thumb.show", $produk)  }}"
-                                     alt="Placeholder image"
-                                >
-
-                                <span
-                                        style="position: absolute; top: 10px; right: 10px; z-index: 999"
-                                        class="tag is-danger is-medium"> {{ $produk->kategori_produk->nama }} </span>
-
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="content">
-                                <span class="is-uppercase is-block has-text-grey has-text-weight-bold">
-                                {{ $produk->nama }}
-                            </span>
-                                <span class="is-block has-text-weight-bold">
-                                {{ $produk->penjual->nama  }}
-                            </span>
-                                <span class="is-block has-text-weight-bold has-text-info">
-                                <i class="fas fa-money-bill"></i> {{ Facades\App\Support\Formatter::currency($produk->harga) }}
-                            </span>
-                                <p class="mt-3">
-                                    {{ $produk->deskripsi  }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                @include('components.produk-card', [
+                    "produk" => $produk
+                ])
             </div>
         @endforeach
     </div>

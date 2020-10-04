@@ -92,6 +92,28 @@
 
             <div class="field">
                 <label class="label"
+                       for="lokasi"
+                >Lokasi</label>
+                <div class="control @error('lokasi') has-icons-right @enderror">
+                    <textarea id="lokasi"
+                              name="lokasi"
+                              rows="5"
+                              class="textarea @error('lokasi') is-danger @enderror"
+                              placeholder="Lokasi"
+                    >{{ old("lokasi", $produk->lokasi) }}</textarea>
+                    @error('lokasi')
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </span>
+                    @enderror
+                </div>
+                @error('lokasi')
+                <p class="help is-danger"> {{ $message }} </p>
+                @enderror
+            </div>
+
+            <div class="field">
+                <label class="label"
                        for="deskripsi"
                 >Deskripsi</label>
                 <div class="control @error('deskripsi') has-icons-right @enderror">

@@ -5,31 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdc3a6de-d5aa-4f83-95f2-d602e44c0a05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/KategoriProdukController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Livewire/Home.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Livewire/KategoriProdukIndex.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/KategoriProduk.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_10_03_193645_create_kategori_produks_table.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2020_10_03_193732_add_kategori_id_field_to_produk.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/KategoriProdukSeeder.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/kategori-produk/create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/kategori-produk/edit.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/kategori-produk/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/livewire/home.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/livewire/kategori-produk-index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/database/migrations/2020_10_04_184756_add_lokasi_field_to_produk.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/components/produk-card.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a77b539e-1f9f-4430-b3dd-1eefd493c591.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a77b539e-1f9f-4430-b3dd-1eefd493c591.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProdukForPenjual.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProdukForPenjualController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/PenjualProdukForPenjualIndex.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/PenjualProdukForPenjualIndex.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Produk.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Produk.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProdukForPenjualController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProdukForPenjualController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Home.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/factories/ProdukFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ProdukFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/penjual-for-pembeli-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/penjual-for-pembeli-show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/livewire/penjual-produk-for-penjual-index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/penjual-produk-for-penjual-index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/produk-for-pelanggan-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/produk-for-pelanggan-show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/produk-for-penjual/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/produk-for-penjual/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/produk-for-penjual/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/produk-for-penjual/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,7 +211,7 @@
       <workItem from="1597627323778" duration="13764000" />
       <workItem from="1601721056164" duration="3496000" />
       <workItem from="1601772627227" duration="351000" />
-      <workItem from="1601772988562" duration="5592000" />
+      <workItem from="1601772988562" duration="9301000" />
     </task>
     <servers />
   </component>
@@ -249,9 +239,10 @@
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
     <state x="473" y="238" width="964" height="573" key="#com.intellij.codeInsight.template.impl.EditVariableDialog/0.0.1920.1053@0.0.1920.1053" timestamp="1597408144050" />
-    <state x="505" y="169" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597247293069">
-      <screen x="0" y="0" width="1920" height="1053" />
+    <state x="505" y="167" width="800" height="683" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601812412417">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="505" y="167" width="800" height="683" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601812412417" />
     <state x="505" y="169" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1053@0.0.1920.1053" timestamp="1597247293069" />
     <state x="627" y="44" width="655" height="961" key="#com.intellij.ide.util.MemberChooser" timestamp="1597247833505">
       <screen x="0" y="0" width="1920" height="1053" />
@@ -294,9 +285,10 @@
       <screen x="0" y="0" width="1920" height="1053" />
     </state>
     <state x="234" y="92" width="1442" height="865" key="IDE.errors.dialog/0.0.1920.1053@0.0.1920.1053" timestamp="1597454192283" />
-    <state x="765" y="426" key="Laravel.ExtractPartialViewDialog" timestamp="1597542058803">
-      <screen x="0" y="0" width="1920" height="1053" />
+    <state x="765" y="421" key="Laravel.ExtractPartialViewDialog" timestamp="1601812961001">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="765" y="421" key="Laravel.ExtractPartialViewDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601812961001" />
     <state x="765" y="426" key="Laravel.ExtractPartialViewDialog/0.0.1920.1053@0.0.1920.1053" timestamp="1597542058803" />
     <state x="534" y="111" width="1161" height="826" key="NewPhpClassDialog" timestamp="1597461529484">
       <screen x="0" y="0" width="1920" height="1053" />
@@ -337,10 +329,10 @@
     </state>
     <state x="371" y="225" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601808580852" />
     <state x="371" y="228" key="run.anything.popup/0.0.1920.1053@0.0.1920.1053" timestamp="1597652778071" />
-    <state x="369" y="0" width="1177" height="1037" key="search.everywhere.popup" timestamp="1601809639221">
+    <state x="369" y="0" width="1177" height="1037" key="search.everywhere.popup" timestamp="1601814938960">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="369" y="0" width="1177" height="1037" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601809639221" />
+    <state x="369" y="0" width="1177" height="1037" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601814938960" />
     <state x="369" y="0" width="1177" height="1049" key="search.everywhere.popup/0.0.1920.1053@0.0.1920.1053" timestamp="1597653942455" />
   </component>
 </project>

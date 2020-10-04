@@ -13,6 +13,7 @@ $factory->define(Produk::class, function (Faker $faker) {
         "nama" => ucwords(join(" ", $faker->words)),
         "deskripsi" => $faker->realText(),
         "harga" => rand(1, 10_000) * 1000,
+        "lokasi" => $faker->streetAddress,
         "kategori_produk_id" => KategoriProduk::query()->inRandomOrder()->value("id"),
     ];
 });

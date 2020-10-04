@@ -26,17 +26,22 @@
     <div class="columns">
         <div class="column is-one-third">
             <figure class="image is-4by5">
-                <img
-                        alt="{{ $this->produk->nama }}"
-                        src="{{ route("produk-thumb.show", $this->produk->id) }}"
+                <img alt="{{ $this->produk->nama }}"
+                     src="{{ route("produk-thumb.show", $this->produk->id) }}"
                 >
             </figure>
         </div>
 
         <div class="column">
-            <span class="tag is-danger is-medium"> {{ $this->produk->kategori_produk->nama }} </span>
+            <span class="tag is-danger is-medium my-2">
+                {{ $this->produk->kategori_produk->nama }}
+            </span>
 
             <h1 class="title is-3"> {{ $this->produk->nama }} </h1>
+            <span class="is-block">
+                {{ $this->produk->lokasi  }}
+            </span>
+
             <p class="subtitle is-3 has-text-danger">
                 {{ \Facades\App\Support\Formatter::currency($this->produk->harga) }}
             </p>
