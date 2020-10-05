@@ -20,8 +20,8 @@ use Livewire\Component;
  */
 class ProdukForPelangganShow extends Component
 {
-    public int $produkId;
-    public int $invoiceItemQuantity;
+    public $produkId;
+    public $invoiceItemQuantity;
 
     public function mount(int $produkId)
     {
@@ -31,9 +31,16 @@ class ProdukForPelangganShow extends Component
 
     public function syncInvoiceItemQuantity($newQuantity)
     {
-        $this->invoiceItemQuantity = $newQuantity;
+        if (!is_numeric($newQuantity)) {
+            $quantity = 1;
+        }
+        else {
+            $quantity = $newQuantity;
+        }
 
-        if ($this->invoiceItemQuantity !== 0) {
+        $this->invoiceItemQuantity = $quantity;
+
+        if ($this->invoiceItemQuantity != 0) {
             $this->invoiceItem->update([
                 "kuantitas" => $this->invoiceItemQuantity
             ]);
