@@ -9,7 +9,7 @@
                 </a>
             </li>
             <li class="is-active">
-                <a href="#" >
+                <a href="#">
                     {{ $this->penjual->nama }}
                 </a>
             </li>
@@ -32,13 +32,26 @@
         </span>
     </p>
 
+    <a href="{{ route("penjual-for-pembeli.chat.index", $penjualId)  }}"
+       class="button is-primary is-small"
+    >
+        <span class="icon is-small">
+            <i class="fas fa-envelope-open-text"></i>
+        </span>
+        <span>
+            Chat Penjual
+        </span>
+    </a>
+
+
     <div class="my-3">
         <label for="search">
             <input
                     class="input"
                     wire:model="search"
                     placeholder="Cari produk..."
-                    type="text">
+                    type="text"
+            >
         </label>
     </div>
 

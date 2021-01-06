@@ -2,7 +2,7 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="advertisement_marketplace@localhost" uuid="a77b539e-1f9f-4430-b3dd-1eefd493c591">
-      <database-info product="MariaDB" version="10.3.22-MariaDB-1ubuntu1" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="2.6.0" dbms="MARIADB" exact-version="10.3.22" exact-driver-version="2.6">
+      <database-info product="MariaDB" version="10.3.25-MariaDB-0ubuntu0.20.04.1" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="2.6.0" dbms="MARIADB" exact-version="10.3.25" exact-driver-version="2.6">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>

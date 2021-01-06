@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatPenjualController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceCancellationForPelangganController;
 use App\Http\Controllers\InvoiceForPelangganController;
@@ -82,6 +83,11 @@ Route::resource("penjual-for-pembeli", class_basename(PenjualForPembeliControlle
 Route::resource("pelanggan.invoice-for-pelanggan", class_basename(InvoiceForPelangganController::class))
     ->parameter("invoice-for-pelanggan", "invoice")
     ->only(["index", "edit", "show"])
+    ->scoped();
+
+Route::resource("penjual-for-pembeli.chat", class_basename(ChatPenjualController::class))
+    ->parameter("penjual-for-pembeli", "penjual")
+    ->only("index")
     ->scoped();
 
 Route::resource("penjual.invoice-for-penjual", class_basename(InvoiceForPenjualController::class))

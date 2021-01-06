@@ -16,6 +16,8 @@ class Pelanggan extends Model
     protected $table = "pelanggan";
     protected $guarded = [];
 
+
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
