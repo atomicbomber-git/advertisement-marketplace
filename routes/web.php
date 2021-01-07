@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\ChatPenjualController;
+use App\Http\Controllers\ChatForPenjualController;
+use App\Http\Controllers\PercakapanForPenjualController;
+use App\Http\Controllers\ChatForPelanggan;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceCancellationForPelangganController;
 use App\Http\Controllers\InvoiceForPelangganController;
@@ -76,6 +78,9 @@ Route::resource("penjual.produk-for-pelanggan", class_basename(ProdukForPelangga
     ->parameter("produk-for-pelanggan", "produk:kode")
     ->only(["show"]);
 
+Route::get("percakapan-for-penjual/{penjual}/index", [PercakapanForPenjualController::class, "index"])->name("percakapan-for-penjual.index");
+Route::get("chat-for-penjual/{pelanggan}/index", [ChatForPenjualController::class, "index"])->name("chat-for-penjual.index");
+
 Route::resource("penjual-for-pembeli", class_basename(PenjualForPembeliController::class))
     ->parameter("penjual-for-pembeli", "penjual")
     ->only(["show"]);
@@ -85,7 +90,7 @@ Route::resource("pelanggan.invoice-for-pelanggan", class_basename(InvoiceForPela
     ->only(["index", "edit", "show"])
     ->scoped();
 
-Route::resource("penjual-for-pembeli.chat", class_basename(ChatPenjualController::class))
+Route::resource("penjual-for-pembeli.chat", class_basename(ChatForPelanggan::class))
     ->parameter("penjual-for-pembeli", "penjual")
     ->only("index")
     ->scoped();

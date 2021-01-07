@@ -56,6 +56,14 @@
                 </a>
             @endcan
 
+            @can(\App\Providers\AuthServiceProvider::MANAGE_OWN_PENJUAL_CHATS)
+                <a
+                        href="{{ route("percakapan-for-penjual.index", auth()->user()->penjual) }}"
+                        class="{{ \Illuminate\Support\Facades\Route::is("percakapan-for-penjual.*") ? "is-active" : "" }}" >
+                    Percakapan
+                </a>
+            @endcan
+
             @can(\App\Providers\AuthServiceProvider::MANAGE_ANY_PENJUAL)
                 <a
                         href="{{ route("penjual.index") }}"

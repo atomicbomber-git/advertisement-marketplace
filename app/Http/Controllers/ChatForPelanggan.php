@@ -7,7 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\ResponseFactory;
 
-class ChatPenjualController extends Controller
+class ChatForPelanggan extends Controller
 {
     private ResponseFactory $responseFactory;
 

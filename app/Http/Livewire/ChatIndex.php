@@ -3,18 +3,22 @@
 namespace App\Http\Livewire;
 
 use App\Chat;
+use App\Pelanggan;
 use App\Penjual;
 use Livewire\Component;
 
-class ChatPenjualIndex extends Component
+class ChatIndex extends Component
 {
     public $penjual_id;
+    public $pelanggan_id;
+
     public $user_is_pelanggan;
     public $pesan;
 
-    public function mount($penjualId, $pesanDariPelanggan)
+    public function mount($pesanDariPelanggan, $penjualId = null, $pelangganId = null)
     {
-        $this->penjual_id = $penjualId;
+        $this->penjual_id = !$pesanDariPelanggan ? \Auth::user()->penjual->id : $penjualId;
+        $this->pelanggan_id = $pesanDariPelanggan ? \Auth::user()->pelanggan->id : $pelangganId;
         $this->user_is_pelanggan = $pesanDariPelanggan;
     }
 
@@ -43,7 +47,7 @@ class ChatPenjualIndex extends Component
      */
     public function getPelanggan(): \App\Pelanggan
     {
-        return \Auth::user()->pelanggan;
+        return Pelanggan::query()->find($this->pelanggan_id);
     }
 
     public function render()
@@ -69,7 +73,7 @@ class ChatPenjualIndex extends Component
             $previous_chat = $chat;
         }
 
-        return view('livewire.chat-penjual-index', [
+        return view('livewire.chat-index', [
             "chats" => $chats,
             "penjual" => $penjual,
             "pelanggan" => $pelanggan,

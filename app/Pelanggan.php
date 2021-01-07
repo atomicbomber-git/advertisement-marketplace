@@ -16,7 +16,10 @@ class Pelanggan extends Model
     protected $table = "pelanggan";
     protected $guarded = [];
 
-
+    public function chats(): HasMany
+    {
+        return $this->hasMany(Chat::class);
+    }
 
     public function user(): BelongsTo
     {
