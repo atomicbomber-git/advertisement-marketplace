@@ -17,7 +17,8 @@ class CreateChatTable extends Migration
             $table->id();
             $table->unsignedInteger('penjual_id')->index();
             $table->unsignedInteger('pelanggan_id')->index();
-            $table->longText("pesan");
+
+            $table->longText('pesan');
 
             $table->foreign('penjual_id')->references('id')->on('penjual');
             $table->foreign('pelanggan_id')->references('id')->on('pelanggan');

@@ -53,16 +53,17 @@ class ChatPenjualIndex extends Component
             ->where("penjual_id", $penjual->id)
             ->get();
 
+        $previous_chat = null;
+
         foreach ($chats as $index => $chat) {
-            $alignsRight = $chat->pelanggan->id === $pelanggan->id;
             $next_chat = $chats[$index + 1] ?? null;
 
             $chat->fill([
-                "aligns_right" => $alignsRight,
-                "shows_time" => $next_chat === null ?
-                    true:
-                    ($next_chat->pelanggan->id === $pelanggan->id) !== ($alignsRight)
+                "shows_time" => $next_chat === null ? true: ($next_chat->pesan_dari_pelanggan) !== ($chat->pesan_dari_pelanggan),
+                "shows_name" => $previous_chat === null ? true : ($previous_chat->pesan_dari_pelanggan) !== ($chat->pesan_dari_pelanggan),
             ]);
+
+            $previous_chat = $chat;
         }
 
         return view('livewire.chat-penjual-index', [

@@ -23,41 +23,62 @@
 
     <h1 class="feature-title title"> Chat </h1>
 
-    <div style="max-width: 600px">
-        <div style="height: 400px; overflow-y: scroll; display: flex; flex-direction: column-reverse">
-            <div class="box" wire:poll>
-                @foreach ($chats as $index => $chat)
-                    <div
+    <div style="max-width: 800px">
+        @if($chats->isEmpty())
+            <article class="message">
+                <div class="message-body">
+                    Belum terdapat pesan sama sekali.
+                </div>
+            </article>
+        @endif
 
-                            style="
-                                    display: flex;
-                                    justify-content: {{ $chat->aligns_right ? "flex-end" : "flex-start" }};
-                                    text-align: {{ $chat->aligns_right ? "right" : "left" }};
-                                    "
-                    >
+        @if($chats->isNotEmpty())
+            <div style="height: 400px; overflow-y: scroll; display: flex; flex-direction: column-reverse">
+                <div class="box"
+                     wire:poll
+                >
+                    @foreach ($chats as $index => $chat)
                         <div
-                                class="box has-background-light"
-                                style="display: block; width: auto; margin: 10px 0 10px 0"
+                                style="
+                                        display: flex;
+                                        justify-content: {{ !$chat->pesan_dari_pelanggan ? "flex-end" : "flex-start" }};
+                                        text-align: {{ !$chat->pesan_dari_pelanggan ? "right" : "left" }};
+                                        "
                         >
-                            <h5 class="has-text-weight-bold"> {{ $chat->aligns_right ? $chat->penjual->user->name : $chat->pelanggan->user->name }} </h5>
+                            <div
+                                    class="box {{ !$chat->pesan_dari_pelanggan ? 'has-background-light' : 'has-background-primary' }}"
+                                    style="display: block; width: auto"
 
-                            {{ $chat->pesan }}
-                        </div>
-                    </div>
 
-                    @if($chat->shows_time)
-                        <div class="is-flex"
-                             style="justify-content: flex-end"
-                        >
-                            <div>
-                                {{ \App\Support\Formatter::humanDateTime($chat->created_at)  }}
+                            >
+                                @if($chat->shows_name)
+                                    <h5 class="has-text-weight-bold"> {{ !$chat->pesan_dari_pelanggan ? "Anda" : $chat->pelanggan->user->name }} </h5>
+                                @endif
+
+                                {{ $chat->pesan }}
                             </div>
                         </div>
-                    @endif
-                @endforeach
+
+                        @if($chat->shows_time)
+                            <div class="is-flex"
+                                 style="justify-content: {{ !$chat->pesan_dari_pelanggan ? "flex-end" : "flex-start" }}; margin-top: 10px"
+                            >
+                                <div>
+                                    {{ \App\Support\Formatter::humanDateTime($chat->created_at)  }}
+                                </div>
+                            </div>
+                        @endif
+
+                        <div style="height: {{ $chat->shows_time ? '20px' : '0' }}">
+                        </div>
+                    @endforeach
+                </div>
             </div>
-        </div>
-        <div class="box">
+        @endif
+
+        <div class="box"
+             style="margin-top: 10px"
+        >
             <form wire:submit.prevent="submit">
                 <div class="field">
                     <label class="label"
