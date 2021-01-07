@@ -9,6 +9,7 @@
       <change afterPath="$PROJECT_DIR$/resources/views/components/boolean-status.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/InvoiceForPenjualController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/InvoiceForPenjualController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/InvoiceForPenjualEdit.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/InvoiceForPenjualEdit.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/InvoiceItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/InvoiceItem.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Support/Formatter.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Support/Formatter.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/invoice-for-penjual/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/invoice-for-penjual/show.blade.php" afterDir="false" />
@@ -239,7 +240,7 @@
       <workItem from="1601876727202" duration="394000" />
       <workItem from="1602465361875" duration="284000" />
       <workItem from="1609942483542" duration="9171000" />
-      <workItem from="1609976207043" duration="21855000" />
+      <workItem from="1609976207043" duration="22158000" />
     </task>
     <servers />
   </component>
