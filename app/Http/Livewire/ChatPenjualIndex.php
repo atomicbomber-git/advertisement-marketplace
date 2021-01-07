@@ -9,11 +9,13 @@ use Livewire\Component;
 class ChatPenjualIndex extends Component
 {
     public $penjual_id;
+    public $user_is_pelanggan;
     public $pesan;
 
-    public function mount($penjualId)
+    public function mount($penjualId, $pesanDariPelanggan)
     {
         $this->penjual_id = $penjualId;
+        $this->user_is_pelanggan = $pesanDariPelanggan;
     }
 
     public function submit()
@@ -21,7 +23,8 @@ class ChatPenjualIndex extends Component
         Chat::query()->create([
             "penjual_id" => $this->getPenjual()->id,
             "pelanggan_id" => $this->getPelanggan()->id,
-            "pesan" => $this->pesan
+            "pesan" => $this->pesan,
+            "pesan_dari_pelanggan" => $this->user_is_pelanggan,
         ]);
 
         $this->pesan = null;
@@ -70,6 +73,7 @@ class ChatPenjualIndex extends Component
             "chats" => $chats,
             "penjual" => $penjual,
             "pelanggan" => $pelanggan,
+            "user_is_pelanggan" => $this->user_is_pelanggan,
         ]);
     }
 }

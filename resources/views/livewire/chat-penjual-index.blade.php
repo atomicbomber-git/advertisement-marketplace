@@ -41,18 +41,24 @@
                         <div
                                 style="
                                         display: flex;
-                                        justify-content: {{ !$chat->pesan_dari_pelanggan ? "flex-end" : "flex-start" }};
-                                        text-align: {{ !$chat->pesan_dari_pelanggan ? "right" : "left" }};
+                                        justify-content: {{ $chat->pesan_dari_pelanggan ? "flex-end" : "flex-start" }};
+                                        text-align: {{ $chat->pesan_dari_pelanggan ? "right": "left" }};
                                         "
                         >
                             <div
-                                    class="box {{ !$chat->pesan_dari_pelanggan ? 'has-background-light' : 'has-background-primary' }}"
+                                    class="box {{ $chat->pesan_dari_pelanggan ? 'has-background-primary' : 'has-background-light'  }}"
                                     style="display: block; width: auto"
 
 
                             >
                                 @if($chat->shows_name)
-                                    <h5 class="has-text-weight-bold"> {{ !$chat->pesan_dari_pelanggan ? "Anda" : $chat->pelanggan->user->name }} </h5>
+                                    <h5 class="has-text-weight-bold">
+                                        @if($chat->pesan_dari_pelanggan)
+                                            {{ $user_is_pelanggan ? "Anda" : $chat->pelanggan->user->name }}
+                                        @else
+                                            {{ !$user_is_pelanggan ? "Anda" : $chat->penjual->nama }}
+                                        @endif
+                                    </h5>
                                 @endif
 
                                 {{ $chat->pesan }}
@@ -61,7 +67,7 @@
 
                         @if($chat->shows_time)
                             <div class="is-flex"
-                                 style="justify-content: {{ !$chat->pesan_dari_pelanggan ? "flex-end" : "flex-start" }}; margin-top: 10px"
+                                 style="justify-content: {{ $chat->pesan_dari_pelanggan ? "flex-end" : "flex-start" }}; margin-top: 10px"
                             >
                                 <div>
                                     {{ \App\Support\Formatter::humanDateTime($chat->created_at)  }}

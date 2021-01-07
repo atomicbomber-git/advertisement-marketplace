@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdc3a6de-d5aa-4f83-95f2-d602e44c0a05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/factories/ChatFactory.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/migrations/2021_01_07_063807_add_pesan_dari_pelanggan_field_to_chat.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/ChatSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ChatPenjualIndex.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/ChatPenjualIndex.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_01_06_211926_create_chat_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_01_06_211926_create_chat_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/chat-penjual/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/chat-penjual/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/livewire/chat-penjual-index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/chat-penjual-index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -215,7 +212,7 @@
       <workItem from="1601876727202" duration="394000" />
       <workItem from="1602465361875" duration="284000" />
       <workItem from="1609942483542" duration="9171000" />
-      <workItem from="1609976207043" duration="2517000" />
+      <workItem from="1609976207043" duration="3213000" />
     </task>
     <servers />
   </component>
