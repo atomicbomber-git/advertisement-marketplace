@@ -5,20 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdc3a6de-d5aa-4f83-95f2-d602e44c0a05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/ChatForPenjualController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/PercakapanForPenjualController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Livewire/PercakapanForPenjualIndex.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/chat-for-penjual/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/livewire/percakapan-for-penjual-index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/percakapan-for-penjual/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ChatPenjualController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ChatForPelanggan.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/ChatPenjualIndex.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/ChatIndex.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Pelanggan.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Pelanggan.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/components/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/components/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/chat-penjual-index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/chat-index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/id/messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/id/messages.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/penjual-for-pembeli-show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/penjual-for-pembeli-show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/livewire/percakapan-for-penjual-index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/percakapan-for-penjual-index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +212,7 @@
       <workItem from="1601876727202" duration="394000" />
       <workItem from="1602465361875" duration="284000" />
       <workItem from="1609942483542" duration="9171000" />
-      <workItem from="1609976207043" duration="8783000" />
+      <workItem from="1609976207043" duration="10547000" />
     </task>
     <servers />
   </component>

@@ -42,10 +42,11 @@
             {{ $this->pelanggans->links() }}
 
         @else
-            <div class="alert alert-warning">
-                <i class="fas fa-exclamation-triangle"></i>
-                {{ __("messages.errors.no_data") }}
-            </div>
+            <article class="message is-warning">
+                <div class="message-body">
+                    {{ __("messages.errors.no_data") }}
+                </div>
+            </article>
         @endif
     </div>
 </div>

@@ -32,17 +32,18 @@
         </span>
     </p>
 
-    <a href="{{ route("penjual-for-pembeli.chat.index", $penjualId)  }}"
-       class="button is-primary is-small"
-    >
+    @if(Auth::user()->level === \App\Constants\UserLevel::PELANGGAN)
+        <a href="{{ route("penjual-for-pembeli.chat.index", $penjualId)  }}"
+           class="button is-primary is-small"
+        >
         <span class="icon is-small">
             <i class="fas fa-envelope-open-text"></i>
         </span>
-        <span>
+            <span>
             Chat Penjual
         </span>
-    </a>
-
+        </a>
+    @endif
 
     <div class="my-3">
         <label for="search">
