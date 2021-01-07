@@ -36,7 +36,7 @@ class PenjualSeeder extends Seeder
                     $user->penjual()->save($penjual);
                 });
 
-            factory(Penjual::class, 100)
+            factory(Penjual::class, 3)
                 ->create([
                     "terverifikasi" => 0,
                 ]);

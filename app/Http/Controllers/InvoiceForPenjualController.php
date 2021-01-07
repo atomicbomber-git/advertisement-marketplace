@@ -25,7 +25,7 @@ class InvoiceForPenjualController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \App\Penjual  $penjual
+     * @param \App\Penjual $penjual
      * @return \Illuminate\Http\Response
      */
     public function index($penjual)
@@ -40,7 +40,7 @@ class InvoiceForPenjualController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param  \App\Penjual  $penjual
+     * @param \App\Penjual $penjual
      * @return \Illuminate\Http\Response
      */
     public function create(Penjual $penjual)
@@ -51,8 +51,8 @@ class InvoiceForPenjualController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Penjual  $penjual
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Penjual $penjual
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, Penjual $penjual)
@@ -63,8 +63,8 @@ class InvoiceForPenjualController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Penjual  $penjual
-     * @param  \App\Invoice  $invoice
+     * @param \App\Penjual $penjual
+     * @param \App\Invoice $invoice
      * @return \Illuminate\Http\Response
      */
     public function show(Penjual $penjual, Invoice $invoice)
@@ -91,12 +91,11 @@ class InvoiceForPenjualController extends Controller
 
                 "totalPrice" => $invoice
                     ->items()
-                    ->when(true, function (Builder $builder) use($invoice) {
+                    ->when(true, function (Builder $builder) use ($invoice) {
                         if ($invoice->status !== InvoiceStatus::DRAFT) {
                             $builder
                                 ->select(DB::raw("SUM(harga * kuantitas) AS aggregate"));
-                        }
-                        else {
+                        } else {
                             $builder
                                 ->join("produk", "produk.id", "=", "produk_id")
                                 ->select(DB::raw("SUM(produk.harga * kuantitas) AS aggregate"));
@@ -106,58 +105,34 @@ class InvoiceForPenjualController extends Controller
         );
     }
 
+    public function updating($fields)
+    {
+        dump($fields);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Penjual  $penjual
-     * @param  \App\Invoice  $invoice
+     * @param \App\Penjual $penjual
+     * @param \App\Invoice $invoice
      * @return \Illuminate\Http\Response
      */
     public function edit(Penjual $penjual, Invoice $invoice)
     {
         $this->authorize(AuthServiceProvider::FINISH_PENJUAL_INVOICE, $invoice);
 
-        return $this->responseFactory->view("invoice-for-penjual.edit",
-            [
-                "penjual" => $penjual,
-                "invoice" => $invoice,
-                "invoice_items" => $invoice
-                    ->items()
-                    ->select("*")
-                    ->with("produk")
-                    ->when($invoice->status === InvoiceStatus::DRAFT, function (Builder $builder) {
-                        $builder
-                            ->join("produk", "produk.id", "=", "produk_id")
-                            ->addSelect(DB::raw("produk.harga * kuantitas AS subtotal"));
-                    })
-                    ->when($invoice->status !== InvoiceStatus::DRAFT, function (Builder $builder) {
-                        $builder->addSelect(DB::raw("harga * kuantitas AS subtotal"));
-                    })
-                    ->get(),
-
-                "totalPrice" => $invoice
-                    ->items()
-                    ->when(true, function (Builder $builder) use($invoice) {
-                        if ($invoice->status !== InvoiceStatus::DRAFT) {
-                            $builder
-                                ->select(DB::raw("SUM(harga * kuantitas) AS aggregate"));
-                        }
-                        else {
-                            $builder
-                                ->join("produk", "produk.id", "=", "produk_id")
-                                ->select(DB::raw("SUM(produk.harga * kuantitas) AS aggregate"));
-                        }
-                    })->value("aggregate")
-            ]
-        );
+        return $this->responseFactory->view("invoice-for-penjual.edit", [
+            "penjual" => $penjual,
+            "invoice" => $invoice,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Penjual  $penjual
-     * @param  \App\Invoice  $invoice
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Penjual $penjual
+     * @param \App\Invoice $invoice
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Penjual $penjual, Invoice $invoice)
@@ -178,17 +153,5 @@ class InvoiceForPenjualController extends Controller
             "penjual" => $invoice->penjual_id,
             "status" => InvoiceStatus::PAID,
         ]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Penjual  $penjual
-     * @param  \App\Invoice  $invoice
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Penjual $penjual, Invoice $invoice)
-    {
-        //
     }
 }

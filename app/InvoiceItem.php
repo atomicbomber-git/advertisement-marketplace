@@ -10,6 +10,11 @@ class InvoiceItem extends Model
     protected $table = "invoice_item";
     protected $guarded = [];
 
+    protected $casts = [
+        "waktu_mulai_sewa" => "datetime:Y-m-d",
+        "waktu_selesai_sewa" => "datetime:Y-m-d",
+    ];
+
     public function produk(): BelongsTo
     {
         return $this->belongsTo(Produk::class);
