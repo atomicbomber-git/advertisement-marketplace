@@ -47,6 +47,9 @@
                     <th> Produk </th>
                     <th class="has-text-right"> Harga Satuan </th>
                     <th class="has-text-right"> Kuantitas </th>
+                    <th class="has-text-centered"> Waktu Mulai Sewa </th>
+                    <th class="has-text-centered"> Waktu Selesai Sewa </th>
+                    <th class="has-text-centered"> Masa Sewa Selesai? </th>
                     <th class="has-text-right"> Subtotal </th>
                 </tr>
                 </thead>
@@ -66,6 +69,16 @@
                         <td class="has-text-right">
                             {{ $invoice_item->kuantitas }}
                         </td>
+
+                        <td class="has-text-centered"> {{ \App\Support\Formatter::dayMonthYear($invoice_item->waktu_mulai_sewa) }} </td>
+                        <td class="has-text-centered"> {{ \App\Support\Formatter::dayMonthYear($invoice_item->waktu_selesai_sewa) }} </td>
+                        <td class="has-text-centered">
+                            <x-boolean-status
+                                :value="!$invoice_item->is_still_reserved"
+                            />
+
+                        </td>
+
                         <td class="has-text-right">
                             {{ \Facades\App\Support\Formatter::currency($invoice_item->subtotal) }}
                         </td>
@@ -75,6 +88,9 @@
 
                 <tfoot>
                 <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>

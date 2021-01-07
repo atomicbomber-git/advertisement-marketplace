@@ -24,7 +24,7 @@ class InvoiceForPenjualEdit extends Component
         $data = $this->validate([
             "invoice_items.*.id" => ["required", Rule::exists(InvoiceItem::class, "id")],
             "invoice_items.*.waktu_mulai_sewa" => ["required", "date-format:Y-m-d", "before:waktu_selesai_sewa"],
-            "invoice_items.*.waktu_selesai_sewa" => ["required", "date-format:Y-m-d", "after:waktu_mulai_sewa"],
+            "invoice_items.*.waktu_selesai_sewa" => ["required", "date-format:Y-m-d"],
         ]);
 
         DB::beginTransaction();

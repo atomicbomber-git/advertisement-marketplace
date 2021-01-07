@@ -6,6 +6,7 @@ use App\Constants\InvoiceStatus;
 use App\Constants\MessageState;
 use App\Constants\SessionHelper;
 use App\Invoice;
+use App\InvoiceItem;
 use App\Penjual;
 use App\Providers\AuthServiceProvider;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -75,8 +76,10 @@ class InvoiceForPenjualController extends Controller
             [
                 "penjual" => $penjual,
                 "invoice" => $invoice,
-                "invoice_items" => $invoice
-                    ->items()
+                "invoice_items" => InvoiceItem::query()
+                    ->withIsStillReserved()
+                    ->where("invoice_id", $invoice->id)
+
                     ->select("*")
                     ->with("produk")
                     ->when($invoice->status === InvoiceStatus::DRAFT, function (Builder $builder) {
