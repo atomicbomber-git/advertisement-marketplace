@@ -49,7 +49,12 @@ class ProdukSeeder extends Seeder
         $imageColor = imagecolorallocate($image, rand(0, 255), rand(0, 255), rand(0, 255));
         $textColor = imagecolorallocate($image, rand(0, 255), rand(0, 255), rand(0, 255));
         imagestring($image, 1, 5, 5,  $text, $textColor);
-        $tempImageFilepath = tempnam("/tmp", "tempimage");
+
+        $tempDir = __DIR__ . "/tmp";
+
+        if (!file_exists($tempDir)) { mkdir($tempDir); }
+
+        $tempImageFilepath = tempnam($tempDir, "tempimage");
         imagepng($image, $tempImageFilepath);
         imagedestroy($image);
 
