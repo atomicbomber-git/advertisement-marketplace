@@ -1,7 +1,7 @@
 @extends("layouts.app-admin")
 
 @section("content")
-    <livewire:chat-penjual-index
+    <livewire:chat-index
             :pelanggan-id="$pelanggan->id"
         :pesan-dari-pelanggan="false"
     />

@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bdc3a6de-d5aa-4f83-95f2-d602e44c0a05" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/database/seeds/tmp/tem12DA.tmp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/tmp/tem2703.tmp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/tmp/temAD4E.tmp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/seeds/tmp/temFA1.tmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/advertisement-marketplace.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/advertisement-marketplace.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/ChatSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/ChatSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/ProdukSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/ProdukSeeder.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +26,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -213,9 +206,18 @@
       <recent name="$PROJECT_DIR$/app/Constants" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="PHPUnit.phpunit.xml">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
+      <method v="2" />
+    </configuration>
+    <configuration name="phpunit.xml" type="PestRunConfigurationType">
+      <option name="pestRunnerSettings">
+        <PestRunner scope="ConfigurationFile" />
+      </option>
+      <option name="runnerSettings">
+        <PhpTestRunnerSettings scope="ConfigurationFile" />
+      </option>
       <method v="2" />
     </configuration>
   </component>
@@ -246,7 +248,8 @@
       <workItem from="1602465361875" duration="284000" />
       <workItem from="1609942483542" duration="9171000" />
       <workItem from="1609976207043" duration="22158000" />
-      <workItem from="1610184301411" duration="1631000" />
+      <workItem from="1610184301411" duration="2481000" />
+      <workItem from="1610262988510" duration="131000" />
     </task>
     <servers />
   </component>
